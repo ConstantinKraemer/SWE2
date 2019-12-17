@@ -37,8 +37,8 @@ const routes: Routes = [
         // Lazy Loading durch dynamische Imports
         // loadChildren statt component wie bei 'home'
         loadChildren: () =>
-            import('./buch/buch-routing.module').then(
-                mod => mod.BuchRoutingModule,
+            import('./kunde/kunde-routing.module').then(
+                mod => mod.KundeRoutingModule,
             ),
     },
 ];
