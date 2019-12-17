@@ -1,11 +1,16 @@
+import { RouterModule, Routes } from '@angular/router';
+import { CreateKundeComponent } from './create-kunde/create-kunde.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { SearchKundeComponent } from './search-kunde/search-kunde.component';
 
 const routes: Routes = [
     {
-        path: 'search-kunde',
+        path: 'search',
         component: SearchKundeComponent,
+    },
+    {
+        path: 'create',
+        component: CreateKundeComponent,
     },
 ];
 

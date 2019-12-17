@@ -33,7 +33,7 @@ const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: 'kunden',
+        path: 'kunde',
         // Lazy Loading durch dynamische Imports
         // loadChildren statt component wie bei 'home'
         loadChildren: () =>
