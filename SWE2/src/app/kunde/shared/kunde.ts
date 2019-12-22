@@ -140,7 +140,8 @@ export class Kunde {
         this.user = user
         this.username = username
         this.version = version || undefined
-    }static fromServer(kundeServer: KundeServer, etag?: string) {
+    }
+    static fromServer(kundeServer: KundeServer, etag?: string) {
         let selfLink: string | undefined
         if (kundeServer.links !== undefined) {
             // innerhalb von einem JSON-Array
