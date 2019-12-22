@@ -18,7 +18,7 @@ import { BASE_URI, BUECHER_PATH_REST } from '../../shared'
 // Aus SharedModule als Singleton exportiert
 import { DiagrammService } from '../../shared/diagramm.service'
 
-import { Kunde, KundeServer, KundeShared } from './kunde'
+import { Kunde, KundeServer, KundeShared, GeschlechtType } from './kunde'
 
 // Methoden der Klasse HttpClient
 //  * get(url, options) – HTTP GET request
@@ -536,4 +536,10 @@ export class KundeService {
         }
         return kunde
     }
+}
+
+export interface Suchkriterien {
+    nachname: string;
+    geschlecht: GeschlechtType | '';
+    email: string | '';
 }
