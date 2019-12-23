@@ -3,25 +3,23 @@ import { faInfoCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { Suchkriterien } from 'src/app/buch/shared/buch.service';
 import { SucheTitelComponent } from 'src/app/buch/suche-buecher/suchformular/suche-titel.component';
+import { fadeIn } from '../../../shared';
 
 @Component({
-  selector: 'hs-suchformular',
-  templateUrl: './suchformular.component.html',
-  styles: []
+    selector: 'hs-suchformular',
+    templateUrl: './suchformular.component.html',
+    animations: [fadeIn],
 })
 export class SuchformularComponent implements OnInit {
+    @Output()
+    readonly suchkriterien = new Subject<Suchkriterien>();
 
-  @Output()
-  readonly suchkriterien = new Subject<Suchkriterien>();
+    readonly faInfoCircle = faInfoCircle;
+    readonly faSearch = faSearch;
 
-  readonly faInfoCircle = faInfoCircle;
-  readonly faSearch = faSearch;
+    //@ViewChild(SucheTitelComponent)
 
-  //@ViewChild(SucheTitelComponent)
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+    ngOnInit() {}
 }

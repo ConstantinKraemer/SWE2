@@ -7,18 +7,18 @@ import {
     HttpErrorResponse,
     HttpHeaders,
     HttpParams,
-} from '@angular/common/http'
-import { Injectable } from '@angular/core'
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 // https://github.com/ReactiveX/rxjs/blob/master/src/internal/Subject.ts
 // https://github.com/ReactiveX/rxjs/blob/master/src/internal/Observable.ts
-import { Subject } from 'rxjs'
-import { filter, map } from 'rxjs/operators'
+import { Subject } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
-import { BASE_URI, BUECHER_PATH_REST } from '../../shared'
+import { BASE_URI, BUECHER_PATH_REST } from '../../shared';
 // Aus SharedModule als Singleton exportiert
-import { DiagrammService } from '../../shared/diagramm.service'
+import { DiagrammService } from '../../shared/diagramm.service';
 
-import { Kunde, KundeServer, KundeShared, GeschlechtType } from './kunde'
+import { Kunde, KundeServer, KundeShared, GeschlechtType } from './kunde';
 
 // Methoden der Klasse HttpClient
 //  * get(url, options) – HTTP GET request
@@ -39,20 +39,20 @@ import { Kunde, KundeServer, KundeShared, GeschlechtType } from './kunde'
  */
 @Injectable({ providedIn: 'root' })
 export class KundeService {
-    private baseUriKunden: string
+    private baseUriKunden: string;
 
     // Observables = Event-Streaming mit Promises
-    private kundenSubject = new Subject<Array<Kunde>>()
-    private kundeSubject = new Subject<Kunde>()
-    private errorSubject = new Subject<string | number>()
+    private kundenSubject = new Subject<Array<Kunde>>();
+    private kundeSubject = new Subject<Kunde>();
+    private errorSubject = new Subject<string | number>();
 
     // tslint:disable-next-line:variable-name
-    private _kunde!: Kunde
+    private _kunde!: Kunde;
 
     private headers = new HttpHeaders({
         'Content-Type': 'application/json',
         Accept: 'text/plain',
-    })
+    });
 
     /**
      * @param diagrammService injizierter DiagrammService
@@ -63,10 +63,10 @@ export class KundeService {
         private readonly diagrammService: DiagrammService,
         private readonly httpClient: HttpClient,
     ) {
-        this.baseUriKunden = `${BASE_URI}/${BUECHER_PATH_REST}`
+        this.baseUriKunden = `${BASE_URI}/${BUECHER_PATH_REST}`;
         console.log(
             `KundeService.constructor(): baseUriBuch=${this.baseUriKunden}`,
-        )
+        );
     }
 
     /**
@@ -75,8 +75,8 @@ export class KundeService {
      * @return void
      */
     set buch(kunde: Kunde) {
-        console.log('KundeService.set buch()', kunde)
-        this._kunde = kunde
+        console.log('KundeService.set buch()', kunde);
+        this._kunde = kunde;
     }
 
     subscribeKunden(next: (buecher: Array<Kunde>) => void) {
@@ -87,14 +87,14 @@ export class KundeService {
         // http://stackoverflow.com/questions/34533197/what-is-the-difference-between-rx-observable-subscribe-and-foreach
         // https://xgrommx.github.io/rx-book/content/observable/observable_instance_methods/subscribe.html
         // tslint:enable:max-line-length
-        return this.kundenSubject.subscribe(next)
+        return this.kundenSubject.subscribe(next);
     }
     subscribeKunde(next: (kunde: Kunde) => void) {
-        return this.kundeSubject.subscribe(next)
+        return this.kundeSubject.subscribe(next);
     }
 
     subscribeError(next: (err: string | number) => void) {
-        return this.errorSubject.subscribe(next)
+        return this.errorSubject.subscribe(next);
     }
 
     /**
@@ -102,25 +102,25 @@ export class KundeService {
      * @param suchkriterien Die Suchkriterien
      */
     find(suchkriterien: KundeShared) {
-        const params = this.suchkriterienToHttpParams(suchkriterien)
-        const uri = this.baseUriKunden
-        console.log(`KundeService.find(): uri=${uri}`)
+        const params = this.suchkriterienToHttpParams(suchkriterien);
+        const uri = this.baseUriKunden;
+        console.log(`KundeService.find(): uri=${uri}`);
 
         const errorFn = (err: HttpErrorResponse) => {
             if (err.error instanceof ProgressEvent) {
-                console.error('Client-seitiger oder Netzwerkfehler', err.error)
-                this.errorSubject.next(-1)
-                return
+                console.error('Client-seitiger oder Netzwerkfehler', err.error);
+                this.errorSubject.next(-1);
+                return;
             }
 
-            const { status } = err
+            const { status } = err;
             console.log(
                 `KundeService.find(): errorFn(): status=${status}, ` +
                     'Response-Body=',
                 err.error,
-            )
-            this.errorSubject.next(status)
-        }
+            );
+            this.errorSubject.next(status);
+        };
 
         // Observable.subscribe() aus RxJS liefert ein Subscription Objekt,
         // mit dem man den Request abbrechen ("cancel") kann
@@ -138,7 +138,7 @@ export class KundeService {
                     jsonArray.map(jsonObjekt => Kunde.fromServer(jsonObjekt)),
                 ),
             )
-            .subscribe(buecher => this.kundenSubject.next(buecher), errorFn)
+            .subscribe(buecher => this.kundenSubject.next(buecher), errorFn);
 
         // Same-Origin-Policy verhindert Ajax-Datenabfragen an einen Server in
         // einer anderen Domain. JSONP (= JSON mit Padding) ermoeglicht die
@@ -152,44 +152,41 @@ export class KundeService {
      */
     findById(id: string | undefined) {
         // Gibt es ein gepuffertes Buch mit der gesuchten ID und Versionsnr.?
-        if (
-            this._kunde !== undefined &&
-            this._kunde.id === id
-        ) {
-            console.log('KundeService.findById(): Kunde gepuffert')
-            this.kundeSubject.next(this._kunde)
-            return
+        if (this._kunde !== undefined && this._kunde.id === id) {
+            console.log('KundeService.findById(): Kunde gepuffert');
+            this.kundeSubject.next(this._kunde);
+            return;
         }
         if (id === undefined) {
-            console.log('KundeService.findById(): Keine Id')
-            return
+            console.log('KundeService.findById(): Keine Id');
+            return;
         }
 
         // Ggf wegen fehlender Versionsnummer (im ETag) nachladen
-        const uri = `${this.baseUriKunden}/${id}`
+        const uri = `${this.baseUriKunden}/${id}`;
 
         const errorFn = (err: HttpErrorResponse) => {
             if (err.error instanceof ProgressEvent) {
                 console.error(
                     'KundeService.findById(): errorFn(): Client- oder Netzwerkfehler',
                     err.error,
-                )
-                this.errorSubject.next(-1)
-                return
+                );
+                this.errorSubject.next(-1);
+                return;
             }
 
-            const { status } = err
+            const { status } = err;
             console.log(
                 `KundeService.findById(): errorFn(): status=${status}` +
                     `Response-Body=${err.error}`,
-            )
-            this.errorSubject.next(status)
-        }
+            );
+            this.errorSubject.next(status);
+        };
 
-        console.log('KundeService.findById(): GET-Request')
+        console.log('KundeService.findById(): GET-Request');
 
-        let body: KundeServer | null
-        let etag: string | null
+        let body: KundeServer | null;
+        let etag: string | null;
         return this.httpClient
             .get<KundeServer>(uri, { observe: 'response' })
             .pipe(
@@ -199,18 +196,18 @@ export class KundeService {
                         response,
                     );
                     ({ body } = response);
-                    return body !== null
+                    return body !== null;
                 }),
                 filter(response => {
-                    etag = response.headers.get('ETag')
-                    return etag !== null
+                    etag = response.headers.get('ETag');
+                    return etag !== null;
                 }),
                 map(_ => {
                     this._kunde = Kunde.fromServer(body, etag);
                     return this._kunde;
                 }),
             )
-            .subscribe(kunde => this.kundeSubject.next(kunde), errorFn)
+            .subscribe(kunde => this.kundeSubject.next(kunde), errorFn);
     }
 
     /**
@@ -231,16 +228,16 @@ export class KundeService {
                 console.error(
                     'KundeService.save(): errorFnPost(): Client- oder Netzwerkfehler',
                     err.error.message,
-                )
+                );
             } else {
                 if (errorFn !== undefined) {
                     // z.B. {titel: ..., verlag: ..., isbn: ...}
-                    errorFn(err.status, err.error)
+                    errorFn(err.status, err.error);
                 } else {
-                    console.error('errorFnPost', err)
+                    console.error('errorFnPost', err);
                 }
             }
-        }
+        };
 
         return this.httpClient
             .post(this.baseUriKunden, neuerKunde, {
@@ -253,18 +250,18 @@ export class KundeService {
                     console.debug(
                         'KundeService.save(): map(): response',
                         response,
-                    )
-                    const { headers } = response
+                    );
+                    const { headers } = response;
                     let location: string | null | undefined = headers.get(
                         'Location',
-                    )
+                    );
                     if (location === null) {
-                        location = undefined
+                        location = undefined;
                     }
-                    return location
+                    return location;
                 }),
             )
-            .subscribe(location => successFn(location), errorFnPost)
+            .subscribe(location => successFn(location), errorFnPost);
     }
 
     /**
@@ -281,36 +278,36 @@ export class KundeService {
             errors: { [s: string]: any } | undefined,
         ) => void,
     ) {
-        const { version } = kunde
+        const { version } = kunde;
         if (version === undefined) {
-            console.error(`Keine Versionsnummer fuer den Kunden ${kunde.id}`)
-            return
+            console.error(`Keine Versionsnummer fuer den Kunden ${kunde.id}`);
+            return;
         }
         const errorFnPut = (err: HttpErrorResponse) => {
             if (err.error instanceof Error) {
                 console.error(
                     'Client-seitiger oder Netzwerkfehler',
                     err.error.message,
-                )
+                );
             } else {
                 if (errorFn !== undefined) {
-                    errorFn(err.status, err.error)
+                    errorFn(err.status, err.error);
                 } else {
-                    console.error('errorFnPut', err)
+                    console.error('errorFnPut', err);
                 }
             }
-        }
+        };
 
-        const uri = `${this.baseUriKunden}/${kunde.id}`
+        const uri = `${this.baseUriKunden}/${kunde.id}`;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             Accept: 'text/plain',
             'If-Match': `"${version}"`,
         });
-        console.log('headers=', this.headers)
+        console.log('headers=', this.headers);
         return this.httpClient
             .put(uri, kunde, { headers: this.headers })
-            .subscribe(successFn, errorFnPut)
+            .subscribe(successFn, errorFnPut);
     }
 
     /**
@@ -324,24 +321,24 @@ export class KundeService {
         successFn: (() => void) | undefined,
         errorFn: (status: number) => void,
     ) {
-        const uri = `${this.baseUriKunden}/${kunde.id}`
+        const uri = `${this.baseUriKunden}/${kunde.id}`;
 
         const errorFnDelete = (err: HttpErrorResponse) => {
             if (err.error instanceof Error) {
                 console.error(
                     'Client-seitiger oder Netzwerkfehler',
                     err.error.message,
-                )
+                );
             } else {
                 if (errorFn !== undefined) {
-                    errorFn(err.status)
+                    errorFn(err.status);
                 } else {
-                    console.error('errorFnPut', err)
+                    console.error('errorFnPut', err);
                 }
             }
-        }
+        };
 
-        return this.httpClient.delete(uri).subscribe(successFn, errorFnDelete)
+        return this.httpClient.delete(uri).subscribe(successFn, errorFnDelete);
     }
 
     // http://www.sitepoint.com/15-best-javascript-charting-libraries
@@ -372,7 +369,7 @@ export class KundeService {
      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
      */
     createBarChart(chartElement: HTMLCanvasElement) {
-        const uri = this.baseUriKunden
+        const uri = this.baseUriKunden;
         return this.httpClient
             .get<Array<KundeServer>>(uri)
             .pipe(
@@ -381,25 +378,25 @@ export class KundeService {
                 map(kunden => {
                     const kundenGueltig = kunden.filter(
                         b => b.id !== null && b.nachname !== undefined,
-                    )
-                    const labels = kundenGueltig.map(b => b.nachname)
+                    );
+                    const labels = kundenGueltig.map(b => b.nachname);
                     console.log(
                         'KundeService.createBarChart(): labels: ',
                         labels,
-                    )
+                    );
 
-                    const data = kundenGueltig.map(b => b.kategorie)
-                    const datasets = [{ label: 'Kategorie', data }]
+                    const data = kundenGueltig.map(b => b.kategorie);
+                    const datasets = [{ label: 'Kategorie', data }];
 
                     return {
                         type: 'bar',
                         data: { labels, datasets },
-                    }
+                    };
                 }),
             )
             .subscribe(config =>
                 this.diagrammService.createChart(chartElement, config),
-            )
+            );
     }
 
     /**
@@ -408,7 +405,7 @@ export class KundeService {
      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
      */
     createLinearChart(chartElement: HTMLCanvasElement) {
-        const uri = this.baseUriKunden
+        const uri = this.baseUriKunden;
 
         this.httpClient
             .get<Array<KundeServer>>(uri)
@@ -418,25 +415,25 @@ export class KundeService {
                 map(kunden => {
                     const kundenGueltig = kunden.filter(
                         b => b.id !== null && b.nachname !== undefined,
-                    )
-                    const labels = kundenGueltig.map(b => b.nachname)
+                    );
+                    const labels = kundenGueltig.map(b => b.nachname);
                     console.log(
                         'KundeService.createLinearChart(): labels: ',
                         labels,
-                    )
+                    );
 
-                    const data = kundenGueltig.map(b => b.kategorie)
-                    const datasets = [{ label: 'Kategorie', data }]
+                    const data = kundenGueltig.map(b => b.kategorie);
+                    const datasets = [{ label: 'Kategorie', data }];
 
                     return {
                         type: 'line',
                         data: { labels, datasets },
-                    }
+                    };
                 }),
             )
             .subscribe(config =>
                 this.diagrammService.createChart(chartElement, config),
-            )
+            );
     }
 
     /**
@@ -445,7 +442,7 @@ export class KundeService {
      * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
      */
     createPieChart(chartElement: HTMLCanvasElement) {
-        const uri = this.baseUriKunden
+        const uri = this.baseUriKunden;
 
         this.httpClient
             .get<Array<KundeServer>>(uri)
@@ -455,27 +452,27 @@ export class KundeService {
                 map(kunden => {
                     const kundenGueltig = kunden.filter(
                         b => b.id !== null && b.nachname !== undefined,
-                    )
-                    const labels = kundenGueltig.map(b => b.nachname)
+                    );
+                    const labels = kundenGueltig.map(b => b.nachname);
                     console.log(
                         'KundeService.createPieChart(): labels: ',
                         labels,
-                    )
-                    const umsaetze = kundenGueltig.map(b => b.kategorie)
+                    );
+                    const umsaetze = kundenGueltig.map(b => b.kategorie);
 
-                    const anzahl = umsaetze.length
-                    const backgroundColor = new Array<string>(anzahl)
-                    const hoverBackgroundColor = new Array<string>(anzahl)
+                    const anzahl = umsaetze.length;
+                    const backgroundColor = new Array<string>(anzahl);
+                    const hoverBackgroundColor = new Array<string>(anzahl);
                     Array(anzahl)
                         .fill(true)
                         .forEach((_, i) => {
                             backgroundColor[
                                 i
-                            ] = this.diagrammService.getBackgroundColor(i)
+                            ] = this.diagrammService.getBackgroundColor(i);
                             hoverBackgroundColor[
                                 i
-                            ] = this.diagrammService.getHoverBackgroundColor(i)
-                        })
+                            ] = this.diagrammService.getHoverBackgroundColor(i);
+                        });
 
                     const data: any = {
                         labels,
@@ -486,18 +483,18 @@ export class KundeService {
                                 hoverBackgroundColor,
                             },
                         ],
-                    }
+                    };
 
-                    return { type: 'pie', data }
+                    return { type: 'pie', data };
                 }),
             )
             .subscribe(config =>
                 this.diagrammService.createChart(chartElement, config),
-            )
+            );
     }
 
     toString() {
-        return `KundeService: {buch: ${JSON.stringify(this._kunde, null, 2)}}`
+        return `KundeService: {buch: ${JSON.stringify(this._kunde, null, 2)}}`;
     }
 
     /**
@@ -506,20 +503,23 @@ export class KundeService {
      * @return Parameter fuer den GET-Request
      */
     private suchkriterienToHttpParams(suchkriterien: KundeShared): HttpParams {
-        let httpParams = new HttpParams()
+        let httpParams = new HttpParams();
 
-        if (suchkriterien.nachname !== undefined && suchkriterien.nachname !== '') {
-            httpParams = httpParams.set('nachname', suchkriterien.nachname)
+        if (
+            suchkriterien.nachname !== undefined &&
+            suchkriterien.nachname !== ''
+        ) {
+            httpParams = httpParams.set('nachname', suchkriterien.nachname);
         }
         if (suchkriterien.email !== undefined && suchkriterien.email !== '') {
-            const value = suchkriterien.email
-            httpParams = httpParams.set('email', value)
+            const value = suchkriterien.email;
+            httpParams = httpParams.set('email', value);
         }
         if (suchkriterien.geschlecht !== undefined) {
-            const value = suchkriterien.geschlecht
-            httpParams = httpParams.set('geschlecht', value)
+            const value = suchkriterien.geschlecht;
+            httpParams = httpParams.set('geschlecht', value);
         }
-        return httpParams
+        return httpParams;
     }
 
     private setBuchId(kunde: KundeServer) {
@@ -532,9 +532,9 @@ export class KundeService {
             }
         }
         if (kunde.id === undefined) {
-            kunde.id = 'undefined'
+            kunde.id = 'undefined';
         }
-        return kunde
+        return kunde;
     }
 }
 

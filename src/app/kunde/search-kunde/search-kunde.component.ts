@@ -3,7 +3,7 @@ import { Suchkriterien } from '../shared/kunde.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'hs-search-kunde',
+    selector: 'hs-suche-buecher',
     template: `
         <hs-suchformular
             (suchkriterien)="setSuchkriterien($event)"

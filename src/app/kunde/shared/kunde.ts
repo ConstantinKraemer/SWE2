@@ -1,14 +1,14 @@
 // tslint:disable:max-file-line-count
-import * as moment from 'moment'
-import 'moment/locale/de'
-import Umsatz from './kunde.umsatz'
+import * as moment from 'moment';
+import 'moment/locale/de';
+import Umsatz from './kunde.umsatz';
 // Alternativen zu Moment
 //  https://github.com/date-fns/date-fns
 //      https://github.com/date-fns/date-fns/issues/275#issuecomment-264934189
 //  https://github.com/moment/luxon
 //  https://github.com/iamkun/dayjs
 
-moment.locale('de')
+moment.locale('de');
 
 export enum FamilienstandType {
     VERHEIRATET = 'VH',
@@ -28,41 +28,41 @@ export enum GeschlechtType {
     waehrung: string,
 } */
 export interface Adress {
-    plz: string,
-    ort: string,
+    plz: string;
+    ort: string;
 }
 
 export interface User {
-    username: string
-    password: string
+    username: string;
+    password: string;
 }
 /**
  * Gemeinsame Datenfelder unabh&auml;ngig, ob die Kundedaten von einem Server
  * (z.B. RESTful Web Service) oder von einem Formular kommen.
  */
 export interface KundeShared {
-    id?: string
-    nachname?: string
-    email: string
-    kategorie?: number
-    newsletter?: boolean
-    geburtsdatum?: Date
-    umsatz?: Umsatz
-    homepage?: URL
-    geschlecht: GeschlechtType
-    familienstand?: FamilienstandType
-    username?: string
-    adresse: Adress
-    user?: User
-    version?: number
+    id?: string;
+    nachname?: string;
+    email: string;
+    kategorie?: number;
+    newsletter?: boolean;
+    geburtsdatum?: Date;
+    umsatz?: Umsatz;
+    homepage?: URL;
+    geschlecht: GeschlechtType;
+    familienstand?: FamilienstandType;
+    username?: string;
+    adresse: Adress;
+    user?: User;
+    version?: number;
 }
 
 interface Href {
-    href: string
+    href: string;
 }
 
 interface SelfLink {
-    self: Href
+    self: Href;
 }
 /**
  * Daten vom und zum REST-Server:
@@ -74,22 +74,22 @@ interface SelfLink {
  * </ul>
  */
 export interface KundeServer extends KundeShared {
-    interessen?: Array<string>
-    links?: any
-    _links?: SelfLink
+    interessen?: Array<string>;
+    links?: any;
+    _links?: SelfLink;
 }
 
 export interface KundeForm extends KundeShared {
-    betrag: number
-    waehrung: string
-    plz: string
-    ort: string
-    kategorie: number
-    username: string
-    password: string
-    S?: boolean
-    L?: boolean
-    R?: boolean
+    betrag: number;
+    waehrung: string;
+    plz: string;
+    ort: string;
+    kategorie: number;
+    username: string;
+    password: string;
+    S?: boolean;
+    L?: boolean;
+    R?: boolean;
 }
 /**
  * Daten aus einem Formular:
@@ -104,7 +104,7 @@ export interface KundeForm extends KundeShared {
  */
 
 export class Kunde {
-    ratingArray: Array<boolean> = []
+    ratingArray: Array<boolean> = [];
 
     // wird aufgerufen von fromServer() oder von fromForm()
     private constructor(
@@ -125,41 +125,43 @@ export class Kunde {
         public username: string | undefined,
         public version: number | undefined,
     ) {
-        this.id = id
-        this.nachname = nachname
-        this.email = email
-        this.kategorie = kategorie
-        this.newsletter = newsletter
-        this.geburtsdatum = geburtsdatum
+        this.id = id;
+        this.nachname = nachname;
+        this.email = email;
+        this.kategorie = kategorie;
+        this.newsletter = newsletter;
+        this.geburtsdatum = geburtsdatum;
         this.umsatz =
-            umsatz !== undefined ? umsatz : this.umsatz = new Umsatz(0, 'EUR')
-        this.geschlecht = geschlecht
-        this.familienstand = familienstand
-        this.interessen = interessen
-        this.adresse = adresse
-        this.user = user
-        this.username = username
-        this.version = version || undefined
+            umsatz !== undefined
+                ? umsatz
+                : (this.umsatz = new Umsatz(0, 'EUR'));
+        this.geschlecht = geschlecht;
+        this.familienstand = familienstand;
+        this.interessen = interessen;
+        this.adresse = adresse;
+        this.user = user;
+        this.username = username;
+        this.version = version || undefined;
     }
     static fromServer(kundeServer: KundeServer, etag?: string) {
-        let selfLink: string | undefined
+        let selfLink: string | undefined;
         if (kundeServer.links !== undefined) {
             // innerhalb von einem JSON-Array
-            selfLink = kundeServer.links[1].href
+            selfLink = kundeServer.links[1].href;
         } else if (kundeServer._links !== undefined) {
             // ein einzelnes JSON-Objekt
-            selfLink = kundeServer._links.self.href
+            selfLink = kundeServer._links.self.href;
         }
-        let id: string | undefined
+        let id: string | undefined;
         if (selfLink !== undefined) {
-            const lastSlash = selfLink.lastIndexOf('/')
-            id = selfLink.substring(lastSlash + 1)
+            const lastSlash = selfLink.lastIndexOf('/');
+            id = selfLink.substring(lastSlash + 1);
         }
-        let version: number | undefined
+        let version: number | undefined;
         if (etag !== undefined) {
             // Anfuehrungszeichen am Anfang und am Ende entfernen
-            const versionStr = etag.substring(1, etag.length - 1)
-            version = Number.parseInt(versionStr, 10)
+            const versionStr = etag.substring(1, etag.length - 1);
+            version = Number.parseInt(versionStr, 10);
         }
 
         const kunde = new Kunde(
@@ -178,9 +180,9 @@ export class Kunde {
             kundeServer.user,
             kundeServer.username,
             version,
-        )
-        console.log('Kunde.fromServer(): kunde=', kunde)
-        return kunde
+        );
+        console.log('Kunde.fromServer(): kunde=', kunde);
+        return kunde;
     }
 
     /**
@@ -189,32 +191,31 @@ export class Kunde {
      * @return Das initialisierte Buch-Objekt
      */
     static fromForm(kundeForm: KundeForm) {
-
-        const interessen: Array<string> = []
+        const interessen: Array<string> = [];
         if (kundeForm.S === true) {
-            interessen.push('S')
+            interessen.push('S');
         }
         if (kundeForm.L === true) {
-            interessen.push('L')
+            interessen.push('L');
         }
         if (kundeForm.R === true) {
-            interessen.push('R')
+            interessen.push('R');
         }
 
         const umsatz: Umsatz = {
             betrag: kundeForm.betrag,
             waehrung: kundeForm.waehrung,
-        }
+        };
 
         const user: User = {
             username: kundeForm.username,
             password: kundeForm.password,
-        }
+        };
 
         const adresse: Adress = {
             plz: kundeForm.plz,
             ort: kundeForm.ort,
-        }
+        };
 
         const kunde = new Kunde(
             kundeForm.id,
@@ -232,9 +233,9 @@ export class Kunde {
             user,
             kundeForm.username,
             kundeForm.version,
-        )
-        console.log('Kunde.fromForm(): kunde=', kunde)
-        return kunde
+        );
+        console.log('Kunde.fromForm(): kunde=', kunde);
+        return kunde;
     }
     /**
      * Abfrage, ob im Buchtitel der angegebene Teilstring enthalten ist. Dabei
@@ -246,7 +247,7 @@ export class Kunde {
     containsNachname(nachname: string) {
         return this.nachname === undefined
             ? false
-            : this.nachname.toLowerCase().includes(nachname.toLowerCase())
+            : this.nachname.toLowerCase().includes(nachname.toLowerCase());
     }
 
     /**
@@ -256,9 +257,9 @@ export class Kunde {
      */
     hasInteressen() {
         if (this.interessen === undefined) {
-            return false
+            return false;
         }
-        return this.interessen.length !== 0
+        return this.interessen.length !== 0;
     }
 
     /**
@@ -283,22 +284,22 @@ export class Kunde {
         plz: string,
         ort: string,
     ) {
-        this.nachname = nachname
-        this.email = email
-        this.kategorie = kategorie
-        this.newsletter = newsletter
-        this.umsatz = umsatz
-        this.homepage = homepage
-        this.geschlecht = geschlecht
-        this.familienstand = familienstand
-        this.interessen = interessen
-        this.adresse.plz = plz
-        this.adresse.ort = ort
-        this.version = 1
+        this.nachname = nachname;
+        this.email = email;
+        this.kategorie = kategorie;
+        this.newsletter = newsletter;
+        this.umsatz = umsatz;
+        this.homepage = homepage;
+        this.geschlecht = geschlecht;
+        this.familienstand = familienstand;
+        this.interessen = interessen;
+        this.adresse.plz = plz;
+        this.adresse.ort = ort;
+        this.version = 1;
     }
     hasNoGeschlecht() {
         if (this.geschlecht === undefined) {
-            return console.error('Geschlecht cant be undefined!')
+            return console.error('Geschlecht cant be undefined!');
         }
     }
 
@@ -323,10 +324,10 @@ export class Kunde {
             adresse: this.adresse,
             user: this.user,
             version: this.version,
-        }
+        };
     }
 
     toString() {
-        return JSON.stringify(this, null, 2)
+        return JSON.stringify(this, null, 2);
     }
 }

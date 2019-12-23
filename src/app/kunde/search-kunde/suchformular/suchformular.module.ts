@@ -1,13 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SuchformularComponent } from './suchformular.component';
 
-
-
 @NgModule({
-  declarations: [SuchformularComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [SuchformularComponent],
+    exports: [SuchformularComponent],
+    imports: [],
 })
-export class SuchformularModule { }
+export class SuchformularModule {}
