@@ -1,1 +1,13 @@
-<p>suche-email works!</p>
+<div class="form-group row">
+    <label for="emailInput" class="col col-2 form-control-label"> Email </label>
+
+    <div class="col col-10">
+        <input
+            id="emailInput"
+            placeholder="Die Email oder einen Teil davon eingeben"
+            class="form-control"
+            [(ngModel)]="email"
+            name="email"
+        />
+    </div>
+</div>
