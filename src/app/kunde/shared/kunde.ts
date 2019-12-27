@@ -49,10 +49,10 @@ export interface KundeShared {
     geburtsdatum?: Date;
     umsatz?: Umsatz;
     homepage?: URL;
-    geschlecht: GeschlechtType;
+    geschlecht?: GeschlechtType | '';
     familienstand?: FamilienstandType;
     username?: string;
-    adresse: Adress;
+    adresse?: Adress;
     user?: User;
     version?: number;
 }
@@ -117,7 +117,7 @@ export class Kunde {
         public geburtsdatum: Date | undefined,
         public umsatz: Umsatz | undefined,
         public homepage: URL | undefined,
-        public geschlecht: GeschlechtType,
+        public geschlecht: GeschlechtType | '',
         public familienstand: FamilienstandType | undefined,
         public interessen: Array<string> | undefined,
         public adresse: Adress,
@@ -261,16 +261,37 @@ export class Kunde {
         }
         return this.interessen.length !== 0;
     }
+    hasInteresse(interesse: string) {
+        if (this.interessen === undefined) {
+            return false;
+        }
+        return this.interessen.includes(interesse);
+    }
+    updateInteressen(lesen: boolean, reisen: boolean, sport: boolean) {
+        this.resetInteressen();
+        if (lesen) {
+            this.addInteresse('L');
+        }
+        if (reisen) {
+            this.addInteresse('R');
+        }
+        if (sport) {
+            this.addInteresse('S');
+        }
+    }
+    private resetInteressen() {
+        this.interessen = [];
+    }
+    private addInteresse(interesse: string) {
+        if (this.interessen === undefined) {
+            this.interessen = [];
+        }
+        this.interessen.push(interesse);
+    }
+    hasGeschlecht(geschlecht: string){
+        return this.geschlecht === geschlecht;
+    }
 
-    /**
-     * Aktualisierung der Stammdaten des Buch-Objekts.
-     * @param titel Der neue Buchtitel
-     * @param rating Die neue Bewertung
-     * @param art Die neue Buchart (DRUCKAUSGABE oder KINDLE)
-     * @param verlag Der neue Verlag
-     * @param preis Der neue Preis
-     * @param rabatt Der neue Rabatt
-     */
     updateStammdaten(
         nachname: string | undefined,
         email: string,
@@ -278,7 +299,7 @@ export class Kunde {
         newsletter: boolean | undefined,
         umsatz: Umsatz | undefined,
         homepage: URL | undefined,
-        geschlecht: GeschlechtType,
+        geschlecht: GeschlechtType | undefined | '',
         familienstand: FamilienstandType | undefined,
         interessen: Array<string> | undefined,
         plz: string,
@@ -301,6 +322,7 @@ export class Kunde {
         if (this.geschlecht === undefined) {
             return console.error('Geschlecht cant be undefined!');
         }
+        
     }
 
     /**

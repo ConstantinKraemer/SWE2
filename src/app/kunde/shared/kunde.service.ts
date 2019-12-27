@@ -42,9 +42,9 @@ export class KundeService {
     private baseUriKunden: string;
 
     // Observables = Event-Streaming mit Promises
-    private kundenSubject = new Subject<Array<Kunde>>();
-    private kundeSubject = new Subject<Kunde>();
-    private errorSubject = new Subject<string | number>();
+    readonly kundenSubject = new Subject<Array<Kunde>>();
+    readonly kundeSubject = new Subject<Kunde>();
+    readonly errorSubject = new Subject<string | number>();
 
     // tslint:disable-next-line:variable-name
     private _kunde!: Kunde;
@@ -542,4 +542,5 @@ export interface Suchkriterien {
     nachname: string;
     geschlecht: GeschlechtType | '';
     email: string | '';
+    interesse: { lesen: boolean; reisen: boolean; sport: boolean };
 }
