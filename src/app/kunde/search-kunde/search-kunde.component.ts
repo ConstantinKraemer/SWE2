@@ -3,12 +3,11 @@ import { Suchkriterien } from '../shared/kunde.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'hs-suche-buecher',
+    selector: 'hs-suche-kunde',
     template: `
         <hs-suchformular
             (suchkriterien)="setSuchkriterien($event)"
         ></hs-suchformular>
-        <hs-suchergebnis [suchkriterien]="suchkriterien"></hs-suchergebnis>
     `,
 })
 export class SucheKundeComponent implements OnInit {

@@ -1,14 +1,13 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'hs-suche-email',
-  templateUrl: './suche-email.component.html',
+    selector: 'hs-suche-email',
+    templateUrl: './suche-email.component.html',
 })
-export class SucheEmailComponent{
+export class SucheEmailComponent {
+    email = '';
 
-  constructor() { 
-    console.log('SucheEmailComponent.constructor()');
-  }
-
-
+    constructor() {
+        console.log('SucheEmailComponent.constructor()');
+    }
 }

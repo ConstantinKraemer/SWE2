@@ -13,46 +13,46 @@ import { SucheInteresseComponent } from './suche-interesse.component';
     templateUrl: './suchformular.component.html',
     animations: [fadeIn],
 })
-export class SuchformularComponent{
+export class SuchformularComponent {
     @Output()
     readonly suchkriterien = new Subject<Suchkriterien>();
 
     readonly faInfoCircle = faInfoCircle;
     readonly faSearch = faSearch;
 
-    @ViewChild(SucheNachnameComponent, {static: true})
+    @ViewChild(SucheNachnameComponent, { static: true })
     private readonly sucheNachnameComponent!: SucheNachnameComponent;
 
-    @ViewChild(SucheGeschlechtComponent, {static: true})
+    @ViewChild(SucheGeschlechtComponent, { static: true })
     private readonly sucheGeschlechtComponent!: SucheGeschlechtComponent;
 
-    @ViewChild(SucheEmailComponent, {static: true})
+    @ViewChild(SucheEmailComponent, { static: true })
     private readonly sucheEmailComponent!: SucheEmailComponent;
 
-    @ViewChild(SucheInteresseComponent, {static: true})
+    @ViewChild(SucheInteresseComponent, { static: true })
     private readonly sucheInteresseComponent!: SucheInteresseComponent;
 
     constructor() {
-      console.log('SuchformularComponent.constructor()');
+        console.log('SuchformularComponent.constructor()');
     }
 
     onFind() {
-      const { nachname } = this.sucheNachnameComponent;
-      const { geschlecht } = this.sucheGeschlechtComponent;
-      const { email } = this.sucheEmailComponent;
-      const { lesen } = this.sucheInteresseComponent;
-      const { reisen } = this.sucheInteresseComponent;
-      const { sport } = this.sucheInteresseComponent;
-      console.log(
-        `SuchformularComponent.onFind(): nachname=${nachname}, geschlecht=${geschlecht}, email=${email}, lesen=${lesen}, reisen=${reisen}, sport= ${sport}`,
-    );
+        const { nachname } = this.sucheNachnameComponent;
+        const { geschlecht } = this.sucheGeschlechtComponent;
+        const { email } = this.sucheEmailComponent;
+        const { lesen } = this.sucheInteresseComponent;
+        const { reisen } = this.sucheInteresseComponent;
+        const { sport } = this.sucheInteresseComponent;
+        console.log(
+            `SuchformularComponent.onFind(): nachname=${nachname}, geschlecht=${geschlecht}, email=${email}, lesen=${lesen}, reisen=${reisen}, sport= ${sport}`,
+        );
 
-    this.suchkriterien.next({
-      nachname,
-      geschlecht,
-      email,
-      interesse: { lesen, reisen, sport},
-    })
-    return false;
+        this.suchkriterien.next({
+            nachname,
+            geschlecht,
+            email,
+            interesse: { lesen, reisen, sport },
+        });
+        return false;
     }
 }
