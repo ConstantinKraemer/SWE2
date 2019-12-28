@@ -20,7 +20,6 @@
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BuchModule } from './buch/buch.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { HeaderModule } from './layout/header/header.module';
 // import { FooterModule } from './layout_alt/footer/footer.module';
@@ -31,6 +30,7 @@ import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { authInterceptorProviders } from './auth/auth.interceptor';
 import { environment } from '../environments/environment';
+import { KundeModule } from './kunde/kunde.module';
 
 // https://angular.io/docs/ts/latest/guide/ngmodule.html
 // https://angular.io/docs/ts/latest/cookbook/ngmodule-faq.html
@@ -60,6 +60,7 @@ import { environment } from '../environments/environment';
 
         AppRoutingModule,
         HomeModule,
+        KundeModule,
         // BuchModule,
         // FooterModule,
         HeaderModule,
