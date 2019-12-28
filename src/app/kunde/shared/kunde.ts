@@ -288,7 +288,7 @@ export class Kunde {
         }
         this.interessen.push(interesse);
     }
-    hasGeschlecht(geschlecht: string){
+    hasGeschlecht(geschlecht: string) {
         return this.geschlecht === geschlecht;
     }
 
@@ -322,7 +322,6 @@ export class Kunde {
         if (this.geschlecht === undefined) {
             return console.error('Geschlecht cant be undefined!');
         }
-        
     }
 
     /**

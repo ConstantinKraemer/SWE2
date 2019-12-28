@@ -29,7 +29,7 @@ import {
     faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../../auth/auth.service';
-import { Kunde, GeschlechtType } from '../../shared/kunde';
+import { Kunde } from '../../shared/kunde';
 import { NgLocalization } from '@angular/common';
 import { Subscription } from 'rxjs';
 

@@ -6,17 +6,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ErrorMessageModule } from 'src/app/shared/error-message.module';
 import { WaitingModule } from 'src/app/shared/waiting.module';
 
-
-
 @NgModule({
-  declarations: [SuchergebnisComponent],
-  exports: [SuchergebnisComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FontAwesomeModule,
-    ErrorMessageModule,
-    WaitingModule,
-  ],
+    declarations: [SuchergebnisComponent],
+    exports: [SuchergebnisComponent],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FontAwesomeModule,
+        ErrorMessageModule,
+        WaitingModule,
+    ],
 })
-export class SuchergebnisModule { }
+export class SuchergebnisModule {}
