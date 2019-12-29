@@ -31,6 +31,7 @@ import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { authInterceptorProviders } from './auth/auth.interceptor';
 import { environment } from '../environments/environment';
+import { LoginModule } from './login/login.module';
 
 // https://angular.io/docs/ts/latest/guide/ngmodule.html
 // https://angular.io/docs/ts/latest/cookbook/ngmodule-faq.html
@@ -54,15 +55,11 @@ import { environment } from '../environments/environment';
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
         }),
-
-        // BrowserAnimationsModule importiert BrowserModul
         BrowserAnimationsModule,
-
         AppRoutingModule,
         HomeModule,
-        // BuchModule,
-        // FooterModule,
         HeaderModule,
+        LoginModule,
         MainModule,
     ],
 

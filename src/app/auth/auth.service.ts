@@ -58,7 +58,6 @@ export class AuthService {
             console.warn('AuthService.login(): Exception', e);
             this.isLoggedInSubject.next(false);
         }
-
         this.rollenSubject.next(rollen);
     }
 
