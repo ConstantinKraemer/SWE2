@@ -126,9 +126,6 @@ export class KundeService {
         // mit dem man den Request abbrechen ("cancel") kann
         // tslint:disable:max-line-length
         // https://angular.io/guide/http
-        // https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md
-        // http://stackoverflow.com/questions/34533197/what-is-the-difference-between-rx-observable-subscribe-and-foreach
-        // https://xgrommx.github.io/rx-book/content/observable/observable_instance_methods/subscribe.html
         // tslint:enable:max-line-length
         return this.httpClient
             .get<Array<KundeServer>>(uri, { params })
@@ -139,11 +136,6 @@ export class KundeService {
                 ),
             )
             .subscribe(buecher => this.kundenSubject.next(buecher), errorFn);
-
-        // Same-Origin-Policy verhindert Ajax-Datenabfragen an einen Server in
-        // einer anderen Domain. JSONP (= JSON mit Padding) ermoeglicht die
-        // Uebertragung von JSON-Daten ueber Domaingrenzen.
-        // In Angular gibt es dafuer den Service Jsonp.
     }
 
     /**

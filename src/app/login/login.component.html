@@ -1,21 +1,39 @@
-<h1>Login here</h1>
-
-<form class="login" action="" method="post">
-
-    <div><label for="username">Username</label>
-        <input type="text" name="username" id="username"></div>
-    <div><label for="password">Password</label>
-        <input type="password" name="password" id="password"></div>
-
-    <div class="actions">
-        <input type="submit" name="login" value="Login"> <a href="/forgot">I forgot my password</a>
+<h1 class="justify-content-center d-flex">Login</h1>
+<form
+    (submit)="onLogin()"
+    class="form-inline my-2 my-lg-0 d-flex justify-content-center flex-column"
+    autocomplete="off"
+    role="form">
+    <div>
+        <label for="usernameInput" class="form-control-label">
+            <small>Benutzername</small>
+        </label>
+        <input
+            id="usernameInput"
+            type="search"
+            class="form-control form-control-sm ml-2"
+            tabindex="1"
+            autocomplete="off"
+            required
+            [(ngModel)]="username"
+            name="username"
+        />
     </div>
+    <div class="">
+        <label for="passwordInput" class="form-control-label ml-3">
+            <small>Passwort</small>
+        </label>
+        <input
+            id="passwordInput"
+            type="password"
+            class="form-control form-control-sm ml-2"
+            tabindex="2"
+            autocomplete="off"
+            required
+            [(ngModel)]="password"
+            name="password"
+        />
+    </div>
+    <button class="btn btn-primary btn-sm mt-2" tabindex="3">Login</button>
 </form>
 
-<div class="account">
-    <p>Create a new account <a href="">here</a>.</p>
-</div>
-
-<div class="contact">
-    <p>If you need any other help, please contact the helpdesk.</p>
-</div>
