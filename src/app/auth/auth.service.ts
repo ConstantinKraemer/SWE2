@@ -20,6 +20,8 @@ import { Injectable } from '@angular/core';
 import { JwtService } from './jwt.service';
 import { Subject } from 'rxjs';
 import { BasicAuthService } from './basic-auth.service';
+import { Router } from '@angular/router';
+import { HOME_PATH } from '../shared';
 
 // export const ROLLE_ADMIN = 'admin';
 // Spring Security:
@@ -34,7 +36,7 @@ export class AuthService {
     private readonly _rollenSubject = new Subject<Array<string>>();
 
     constructor(
-        //private readonly jwtService: JwtService,
+        private readonly router: Router,
         private readonly basicAuthService: BasicAuthService,
         private readonly cookieService: CookieService,
     ) {
@@ -53,7 +55,6 @@ export class AuthService {
         );
         try {
             rollen = await this.basicAuthService.login(username, password);
-            //rollen = await this.jwtService.login(username, password);
             console.log('AuthService.login()', rollen);
             this.isLoggedInSubject.next(true);
         } catch (e) {
@@ -62,6 +63,7 @@ export class AuthService {
             this.isLoggedInSubject.next(false);
         }
         this.rollenSubject.next(rollen);
+        await this.router.navigate([HOME_PATH]);
     }
 
     /**
