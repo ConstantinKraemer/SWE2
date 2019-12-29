@@ -1,10 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { KundeRoutingModule } from './kunde-routing.module';
+import { NgModule } from '@angular/core';
+import { SearchKundeModule } from './search-kunde/search-kunde.module';
 
 @NgModule({
-    declarations: [],
-    imports: [CommonModule, KundeRoutingModule],
+    imports: [KundeRoutingModule, SearchKundeModule],
 })
 export class KundeModule {}

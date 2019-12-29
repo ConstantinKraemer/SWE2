@@ -19,10 +19,11 @@ import { CookieService } from './cookie.service';
 import { Injectable } from '@angular/core';
 import { JwtService } from './jwt.service';
 import { Subject } from 'rxjs';
+import { BasicAuthService } from './basic-auth.service';
 
-export const ROLLE_ADMIN = 'admin';
+// export const ROLLE_ADMIN = 'admin';
 // Spring Security:
-// export const ROLLE_ADMIN = 'ROLE_ADMIN'
+export const ROLLE_ADMIN = 'ROLE_ADMIN';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -33,7 +34,8 @@ export class AuthService {
     private readonly _rollenSubject = new Subject<Array<string>>();
 
     constructor(
-        private readonly jwtService: JwtService,
+        //private readonly jwtService: JwtService,
+        private readonly basicAuthService: BasicAuthService,
         private readonly cookieService: CookieService,
     ) {
         console.log('AuthService.constructor()');
@@ -45,17 +47,18 @@ export class AuthService {
      * @return void
      */
     async login(username: string | undefined, password: string | undefined) {
+        let rollen: Array<string>;
         console.log(
             `AuthService.login(): username=${username}, password=${password}`,
         );
-        let rollen: Array<string> = [];
         try {
-            // this.basicAuthService.login(username, password)
-            rollen = await this.jwtService.login(username, password);
+            rollen = await this.basicAuthService.login(username, password);
+            //rollen = await this.jwtService.login(username, password);
             console.log('AuthService.login()', rollen);
             this.isLoggedInSubject.next(true);
         } catch (e) {
             console.warn('AuthService.login(): Exception', e);
+            rollen = [];
             this.isLoggedInSubject.next(false);
         }
         this.rollenSubject.next(rollen);

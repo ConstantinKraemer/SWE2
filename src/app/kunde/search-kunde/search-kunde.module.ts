@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SearchKundeComponent } from './search-kunde.component';
+import { SucheKundeComponent } from './search-kunde.component';
+import { SuchformularModule } from './suchformular/suchformular.module';
+import { Title } from '@angular/platform-browser';
+import { SuchergebnisModule } from './suchergebnis/suchergebnis.module';
 
 @NgModule({
-    declarations: [SearchKundeComponent],
-    imports: [CommonModule],
+    declarations: [SucheKundeComponent],
+    exports: [SucheKundeComponent],
+    imports: [SuchformularModule, SuchergebnisModule],
+    providers: [Title],
 })
 export class SearchKundeModule {}
