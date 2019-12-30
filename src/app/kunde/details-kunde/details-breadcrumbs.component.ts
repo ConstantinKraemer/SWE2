@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
+/**
+ * Komponente f&uuml;r das Tag <code>hs-details-breadcrumbs</code>
+ */
 @Component({
-  selector: 'hs-details-breadcrumbs',
-  templateUrl: './details-breadcrumbs.component.html',
-  styles: []
+    selector: 'hs-details-breadcrumbs',
+    templateUrl: './details-breadcrumbs.component.html',
 })
-export class DetailsBreadcrumbsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class DetailsBreadcrumbsComponent {
+    constructor() {
+        console.log('DetailsBreadcrumbsComponent.constructor()');
+    }
 }
