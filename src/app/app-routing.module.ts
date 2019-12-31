@@ -14,12 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+import { DETAILS_KUNDE_PATH, HOME_PATH } from './shared';
 import { RouterModule, Routes } from '@angular/router';
-import { HOME_PATH, DETAILS_KUNDE_PATH } from './shared';
+import { DetailsKundeComponent } from './kunde/details-kunde/details-kunde.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
-import { DetailsKundeComponent } from './kunde/details-kunde/details-kunde.component';
 
 // Route-Definitionen fuer den Root-Router
 const routes: Routes = [

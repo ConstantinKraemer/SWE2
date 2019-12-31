@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Kunde } from 'src/app/kunde/shared/kunde';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Komponente f&uuml;r das Tag <code>hs-stammdaten</code>

@@ -1,12 +1,9 @@
-// tslint:disable:max-file-line-count
+/* eslint-disable @typescript-eslint/no-extra-parens */
+// eslint:disable:max-file-line-count
 import * as moment from 'moment';
+// eslint-disable-next-line sort-imports
 import 'moment/locale/de';
 import Umsatz from './kunde.umsatz';
-// Alternativen zu Moment
-//  https://github.com/date-fns/date-fns
-//      https://github.com/date-fns/date-fns/issues/275#issuecomment-264934189
-//  https://github.com/moment/luxon
-//  https://github.com/iamkun/dayjs
 
 moment.locale('de');
 
@@ -22,11 +19,6 @@ export enum GeschlechtType {
     WEIBLICH = 'W',
     DIVERS = 'D',
 }
-
-/* export interface Umsatz {
-    betrag: number,
-    waehrung: string,
-} */
 export interface Adress {
     plz: string;
     ort: string;
@@ -36,10 +28,6 @@ export interface User {
     username: string;
     password: string;
 }
-/**
- * Gemeinsame Datenfelder unabh&auml;ngig, ob die Kundedaten von einem Server
- * (z.B. RESTful Web Service) oder von einem Formular kommen.
- */
 export interface KundeShared {
     id?: string;
     nachname?: string;
@@ -64,15 +52,7 @@ interface Href {
 interface SelfLink {
     self: Href;
 }
-/**
- * Daten vom und zum REST-Server:
- * <ul>
- *  <li> Arrays f&uuml;r mehrere Werte, die in einem Formular als Checkbox
- *       dargestellt werden.
- *  <li> Daten mit Zahlen als Datentyp, die in einem Formular nur als
- *       String handhabbar sind.
- * </ul>
- */
+
 export interface KundeServer extends KundeShared {
     interessen?: Array<string>;
     links?: any;
@@ -107,6 +87,7 @@ export class Kunde {
     ratingArray: Array<boolean> = [];
 
     // wird aufgerufen von fromServer() oder von fromForm()
+    // eslint-disable-next-line max-params
     private constructor(
         // tslint:disable-next-line:variable-name
         public id: string | undefined,
@@ -132,9 +113,9 @@ export class Kunde {
         this.newsletter = newsletter;
         this.geburtsdatum = geburtsdatum;
         this.umsatz =
+            // eslint-disable-next-line no-negated-condition
             umsatz !== undefined
-                ? umsatz
-                : (this.umsatz = new Umsatz(0, 'EUR'));
+                ? umsatz : this.umsatz = new Umsatz(0, 'EUR');
         this.geschlecht = geschlecht;
         this.familienstand = familienstand;
         this.interessen = interessen;
@@ -256,7 +237,7 @@ export class Kunde {
      * @return true, falls das Buch dem Verlag zugeordnet ist. Sonst false.
      */
     hasInteressen() {
-        if (this.interessen === undefined) {
+        if (this.interessen === undefined || this.interessen === null) {
             return false;
         }
         return this.interessen.length !== 0;
@@ -323,12 +304,6 @@ export class Kunde {
             return console.error('Geschlecht cant be undefined!');
         }
     }
-
-    /**
-     * Konvertierung des Buchobjektes in ein JSON-Objekt f&uuml;r den RESTful
-     * Web Service.
-     * @return Das JSON-Objekt f&uuml;r den RESTful Web Service
-     */
     toJSON(): KundeServer {
         return {
             id: this.id,

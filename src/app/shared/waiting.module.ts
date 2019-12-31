@@ -16,11 +16,10 @@
  */
 
 // https://fontawesome.com/how-to-use/on-the-web/using-with/angular
+import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
-
 import { WaitingComponent } from './waiting.component';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [WaitingComponent],

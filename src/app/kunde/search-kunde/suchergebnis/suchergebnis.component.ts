@@ -19,14 +19,15 @@
 
 // Bereitgestellt durch das RouterModule
 import { ActivatedRoute, Router } from '@angular/router';
-import { KundeService, Suchkriterien } from '../../shared/kunde.service';
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import {
+    DETAILS_KUNDE_PATH,
     HttpStatus,
     easeIn,
     easeOut,
-    DETAILS_KUNDE_PATH,
 } from '../../../shared';
+import { KundeService, Suchkriterien } from '../../shared/kunde.service';
+
 import {
     faFolderOpen,
     faInfoCircle,
