@@ -21,7 +21,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { KundeService, Suchkriterien } from '../../shared/kunde.service';
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { HttpStatus, easeIn, easeOut } from '../../../shared';
+import {
+    HttpStatus,
+    easeIn,
+    easeOut,
+    DETAILS_KUNDE_PATH,
+} from '../../../shared';
 import {
     faFolderOpen,
     faInfoCircle,
@@ -115,7 +120,8 @@ export class SuchergebnisComponent implements OnChanges, OnInit, OnDestroy {
         // https://github.com/angular/angular/pull/27198
         // https://github.com/angular/angular/commit/67f4a5d4bd3e8e6a35d85500d630d94db061900b
         /* eslint-disable object-curly-newline */
-        return this.router.navigate(['..', kunde.id], {
+        const path = `/${DETAILS_KUNDE_PATH}/${kunde.id}`;
+        return this.router.navigate([path], {
             relativeTo: this.route,
         });
     }
@@ -173,7 +179,7 @@ export class SuchergebnisComponent implements OnChanges, OnInit, OnDestroy {
 
             switch (err) {
                 case HttpStatus.NOT_FOUND:
-                    this.errorMsg = 'Keine Bücher gefunden.';
+                    this.errorMsg = 'Keine Kunden gefunden.';
                     break;
                 default:
                     this.errorMsg = 'Ein Fehler ist aufgetreten.';

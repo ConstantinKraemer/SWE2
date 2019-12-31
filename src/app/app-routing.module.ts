@@ -16,9 +16,10 @@
  */
 
 import { RouterModule, Routes } from '@angular/router';
-import { HOME_PATH } from './shared';
+import { HOME_PATH, DETAILS_KUNDE_PATH } from './shared';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
+import { DetailsKundeComponent } from './kunde/details-kunde/details-kunde.component';
 
 // Route-Definitionen fuer den Root-Router
 const routes: Routes = [
@@ -40,6 +41,10 @@ const routes: Routes = [
             import('./kunde/kunde-routing.module').then(
                 mod => mod.KundeRoutingModule,
             ),
+    },
+    {
+        path: `${DETAILS_KUNDE_PATH}/:id`,
+        component: DetailsKundeComponent,
     },
 ];
 

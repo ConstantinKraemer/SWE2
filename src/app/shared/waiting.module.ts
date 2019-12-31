@@ -20,10 +20,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 
 import { WaitingComponent } from './waiting.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [WaitingComponent],
     exports: [WaitingComponent],
-    imports: [FontAwesomeModule],
+    imports: [FontAwesomeModule, CommonModule],
 })
 export class WaitingModule {}
