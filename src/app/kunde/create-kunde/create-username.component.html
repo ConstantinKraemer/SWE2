@@ -16,27 +16,28 @@
 -->
 
 <div class="form-group row">
-    <label for="emailInput" class="col col-2 form-control-label">
-        Email *
+    <label for="usernameInput" class="col col-2 form-control-label">
+        Benutzernamen *
     </label>
     <div class="col col-10" [formGroup]="form">
         <input
-            id="emailInput"
-            placeholder="Email"
+            id="usernameInput"
+            placeholder="Benutzernamen"
             class="form-control"
             autofocus
-            formControlName="email"
-            [class.border-danger]="email.invalid && email.touched"
+            formControlName="username"
+            [class.border-danger]="username.invalid && username.touched"
         />
 
-        <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+        <div *ngIf="username.invalid && username.touched" class="alert alert-danger">
             <fa-icon [icon]="faExclamationCircle"></fa-icon>
-            <span class="ml-1" *ngIf="email.errors && email.errors.required">
-                E-Mail Adresse muss angegeben werden.
+            <span class="ml-1" *ngIf="username.errors && username.errors.required">
+                Bitte geben Sie einen Benutzernamen an.
             </span>
-            <span class="ml-1" *ngIf="email.errors && email.errors.email">
-                Die Angegebene E-Mail Adresse ist ungültig.
+            <span class="ml-1" *ngIf="username.errors && username.errors.minlength">
+                Ein Benutzernamen muss mindestens 5 Zeichen lang sein.
             </span>
+
         </div>
     </div>
 </div>

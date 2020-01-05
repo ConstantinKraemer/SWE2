@@ -16,14 +16,14 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { CreateKategorieComponent } from './create-kategorie.component';
+import { CreatePlzComponent } from './create-plz.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [CreateKategorieComponent],
-    exports: [CreateKategorieComponent],
+    declarations: [CreatePlzComponent],
+    exports: [CreatePlzComponent],
     imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
 })
-export class CreateKategorieModule {}
+export class CreatePlzModule {}

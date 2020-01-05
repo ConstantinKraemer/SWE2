@@ -16,31 +16,17 @@
 -->
 
 <div class="form-group row">
-    <label for="titelInput" class="col col-2 form-control-label">
-        Homepage *
+    <label for="homepageInput" class="col col-2 form-control-label">
+        Homepage
     </label>
     <div class="col col-10" [formGroup]="form">
         <input
-            id="titelInput"
-            placeholder="Titel"
+            id="homepageInput"
+            placeholder="Homepage"
             class="form-control"
             autofocus
-            formControlName="titel"
-            [class.border-danger]="titel.invalid && titel.touched"
+            formControlName="homepage"
         />
 
-        <div *ngIf="titel.invalid && titel.touched" class="alert alert-danger">
-            <fa-icon [icon]="faExclamationCircle"></fa-icon>
-            <span class="ml-1" *ngIf="titel.errors && titel.errors.required">
-                Ein Buchtitel muss eingegeben werden.
-            </span>
-            <span class="ml-1" *ngIf="titel.errors && titel.errors.minlength">
-                Ein Buchtitel muss mindestens 2 Zeichen lang sein.
-            </span>
-            <span class="ml-1" *ngIf="titel.errors && titel.errors.pattern">
-                Ein Buchtitel muss mit einem Buchstaben oder einer Ziffer
-                beginnen.
-            </span>
-        </div>
     </div>
 </div>

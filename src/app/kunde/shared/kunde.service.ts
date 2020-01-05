@@ -54,32 +54,22 @@ export class KundeService {
         Accept: 'text/plain',
     });
 
-    /**
-     * @param diagrammService injizierter DiagrammService
-     * @param httpClient injizierter Service HttpClient (von Angular)
-     * @return void
-     */
     constructor(
         private readonly diagrammService: DiagrammService,
         private readonly httpClient: HttpClient,
     ) {
         this.baseUriKunden = `${BASE_URI}/${BUECHER_PATH_REST}`;
         console.log(
-            `KundeService.constructor(): baseUriBuch=${this.baseUriKunden}`,
+            `KundeService.constructor(): baseUriKunden=${this.baseUriKunden}`,
         );
     }
 
-    /**
-     * Ein Buch-Objekt puffern.
-     * @param buch Das Buch-Objekt, das gepuffert wird.
-     * @return void
-     */
-    set buch(kunde: Kunde) {
-        console.log('KundeService.set buch()', kunde);
+    set kunde(kunde: Kunde) {
+        console.log('KundeService.set kunde()', kunde);
         this._kunde = kunde;
     }
 
-    subscribeKunden(next: (buecher: Array<Kunde>) => void) {
+    subscribeKunden(next: (kunden: Array<Kunde>) => void) {
         // Observable.subscribe() aus RxJS liefert ein Subscription Objekt,
         // mit dem man den Request auch abbrechen ("cancel") kann
         // tslint:disable:max-line-length
@@ -138,12 +128,7 @@ export class KundeService {
             .subscribe(buecher => this.kundenSubject.next(buecher), errorFn);
     }
 
-    /**
-     * Ein Buch anhand der ID suchen
-     * @param id Die ID des gesuchten Buchs
-     */
     findById(id: string | undefined) {
-        // Gibt es ein gepuffertes Buch mit der gesuchten ID und Versionsnr.?
         if (this._kunde !== undefined && this._kunde.id === id) {
             console.log('KundeService.findById(): Kunde gepuffert');
             this.kundeSubject.next(this._kunde);
@@ -202,12 +187,6 @@ export class KundeService {
             .subscribe(kunde => this.kundeSubject.next(kunde), errorFn);
     }
 
-    /**
-     * Ein neues Buch anlegen
-     * @param neuesBuch Das JSON-Objekt mit dem neuen Buch
-     * @param successFn Die Callback-Function fuer den Erfolgsfall
-     * @param errorFn Die Callback-Function fuer den Fehlerfall
-     */
     save(
         neuerKunde: Kunde,
         successFn: (location: string | undefined) => void,
@@ -256,12 +235,6 @@ export class KundeService {
             .subscribe(location => successFn(location), errorFnPost);
     }
 
-    /**
-     * Ein vorhandenes Buch aktualisieren
-     * @param buch Das JSON-Objekt mit den aktualisierten Buchdaten
-     * @param successFn Die Callback-Function fuer den Erfolgsfall
-     * @param errorFn Die Callback-Function fuer den Fehlerfall
-     */
     update(
         kunde: Kunde,
         successFn: () => void,
@@ -302,12 +275,6 @@ export class KundeService {
             .subscribe(successFn, errorFnPut);
     }
 
-    /**
-     * Ein Buch l&ouml;schen
-     * @param buch Das JSON-Objekt mit dem zu loeschenden Buch
-     * @param successFn Die Callback-Function fuer den Erfolgsfall
-     * @param errorFn Die Callback-Function fuer den Fehlerfall
-     */
     remove(
         kunde: Kunde,
         successFn: (() => void) | undefined,
@@ -366,7 +333,7 @@ export class KundeService {
             .get<Array<KundeServer>>(uri)
             .pipe(
                 // ID aus Self-Link
-                map(kunden => kunden.map(kunde => this.setBuchId(kunde))),
+                map(kunden => kunden.map(kunde => this.setKundeId(kunde))),
                 map(kunden => {
                     const kundenGueltig = kunden.filter(
                         b => b.id !== null && b.nachname !== undefined,
@@ -403,7 +370,7 @@ export class KundeService {
             .get<Array<KundeServer>>(uri)
             .pipe(
                 // ID aus Self-Link
-                map(kunden => kunden.map(b => this.setBuchId(b))),
+                map(kunden => kunden.map(b => this.setKundeId(b))),
                 map(kunden => {
                     const kundenGueltig = kunden.filter(
                         b => b.id !== null && b.nachname !== undefined,
@@ -440,7 +407,7 @@ export class KundeService {
             .get<Array<KundeServer>>(uri)
             .pipe(
                 // ID aus Self-Link
-                map(kunden => kunden.map(buch => this.setBuchId(buch))),
+                map(kunden => kunden.map(buch => this.setKundeId(buch))),
                 map(kunden => {
                     const kundenGueltig = kunden.filter(
                         b => b.id !== null && b.nachname !== undefined,
@@ -514,7 +481,7 @@ export class KundeService {
         return httpParams;
     }
 
-    private setBuchId(kunde: KundeServer) {
+    private setKundeId(kunde: KundeServer) {
         const { _links } = kunde;
         if (_links !== undefined) {
             const selfLink = kunde._links.self.href;

@@ -27,14 +27,15 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { CreateEmailModule } from './create-email.module';
 import { CreateNewsletterModule } from './create-newsletter.module';
-import { CreateNachnameComponent } from './create-nachname.component';
 import { CreateNachnameModule } from './create-nachname.module';
-import { CreateGeburtsdatumComponent } from './create-geburtsdatum.component';
 import { CreateGeburtsdatumModule } from './create-geburtsdatum.module';
 import { CreateHomepageModule } from './create-homepage.module';
-import { CreateGeschlechtComponent } from './create-geschlecht.component';
 import { CreateGeschlechtModule } from './create-geschlecht.module';
 import { CreateFamilienstandModule } from './create-familienstand.module';
+import { CreatePasswortModule } from './create-passwort.module';
+import { CreateUsernameModule } from './create-username.module';
+import { CreateOrtModule } from './create-ort.module';
+import { CreatePlzModule } from './create-plz.module';
 
 // Ein Modul enthaelt logisch zusammengehoerige Funktionalitaet.
 // Exportierte Komponenten koennen bei einem importierenden Modul in dessen
@@ -55,6 +56,10 @@ import { CreateFamilienstandModule } from './create-familienstand.module';
         CreateNachnameModule,
         CreateGeburtsdatumModule,
         CreateHomepageModule,
+        CreateUsernameModule,
+        CreateOrtModule,
+        CreatePlzModule,
+        CreatePasswortModule,
         CreateGeschlechtModule,
         CreateFamilienstandModule,
         ErrorMessageModule,

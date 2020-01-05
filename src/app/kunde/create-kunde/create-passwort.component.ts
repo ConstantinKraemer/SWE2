@@ -19,13 +19,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Komponente mit dem Tag &lt;hs-create-titel&gt;, um das Erfassungsformular
+ * f&uuml;r ein neues Buch zu realisieren.
+ */
 @Component({
     // moduleId: module.id,
-    selector: 'hs-create-nachname',
-    templateUrl: './create-nachname.component.html',
+    selector: 'hs-create-passwort',
+    templateUrl: './create-passwort.component.html',
 })
-export class CreateNachnameComponent implements OnInit {
-    private static readonly MIN_LENGTH = 2;
+export class CreatePasswortComponent implements OnInit {
+    private static readonly MIN_LENGTH = 7;
 
     @Input()
     readonly form!: FormGroup;
@@ -35,17 +39,17 @@ export class CreateNachnameComponent implements OnInit {
     //    serverseitig mittels Request/Response
     //    clientseitig bei den Ereignissen keyup, change, blur, ...
     // Ein Endbenutzer bewirkt staendig einen neuen Fehlerstatus
-    readonly nachname = new FormControl(undefined, [
+    readonly password = new FormControl(undefined, [
         Validators.required,
-        Validators.minLength(CreateNachnameComponent.MIN_LENGTH),
-        Validators.pattern(/^\w.*$/u),
+        Validators.minLength(CreatePasswortComponent.MIN_LENGTH),
     ]);
+    // readonly titelGroup = new FormGroup({ titel: this.titel })
 
     readonly faExclamationCircle = faExclamationCircle;
 
     ngOnInit() {
         console.log('CreateHomepageComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('nachname', this.nachname);
+        this.form.addControl('password', this.password);
     }
 }

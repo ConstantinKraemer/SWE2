@@ -36,7 +36,7 @@ export class CreateVerlagComponent implements OnInit {
     readonly faExclamationCircle = faExclamationCircle;
 
     ngOnInit() {
-        console.log('CreateVerlagComponent.ngOnInit');
+        console.log('CreateKategorieComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
         this.form.addControl('verlag', this.verlag);
     }

@@ -31,13 +31,13 @@ export class CreateGeburtsdatumComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    readonly datum = new FormControl(undefined);
+    readonly geburtsdatum = new FormControl(undefined);
 
     readonly faExclamationCircle = faExclamationCircle;
 
     ngOnInit() {
         console.log('CreateGeburtsdatumComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('datum', this.datum);
+        this.form.addControl('geburtsdatum', this.geburtsdatum);
     }
 }

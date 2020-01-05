@@ -19,12 +19,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-/**
- * Komponente mit dem Tag &lt;hs-create-titel&gt;, um das Erfassungsformular
- * f&uuml;r ein neues Buch zu realisieren.
- */
 @Component({
-    // moduleId: module.id,
     selector: 'hs-create-email',
     templateUrl: './create-email.component.html',
 })
@@ -34,17 +29,11 @@ export class CreateEmailComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    // Keine Vorbelegung bzw. der leere String, da es Placeholder gibt
-    // Varianten fuer Validierung:
-    //    serverseitig mittels Request/Response
-    //    clientseitig bei den Ereignissen keyup, change, blur, ...
-    // Ein Endbenutzer bewirkt staendig einen neuen Fehlerstatus
     readonly email = new FormControl(undefined, [
         Validators.required,
         Validators.minLength(CreateEmailComponent.MIN_LENGTH),
-        Validators.pattern(/^\w.*$/u),
+        Validators.email,
     ]);
-    // readonly titelGroup = new FormGroup({ titel: this.titel })
 
     readonly faExclamationCircle = faExclamationCircle;
 

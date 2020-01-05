@@ -19,38 +19,26 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-/**
- * Komponente mit dem Tag &lt;hs-create-titel&gt;, um das Erfassungsformular
- * f&uuml;r ein neues Buch zu realisieren.
- */
 @Component({
     // moduleId: module.id,
     selector: 'hs-create-homepage',
     templateUrl: './create-homepage.component.html',
 })
 export class CreateHomepageComponent implements OnInit {
-    private static readonly MIN_LENGTH = 2;
+    private static readonly MIN_LENGTH = 3;
 
     @Input()
     readonly form!: FormGroup;
 
-    // Keine Vorbelegung bzw. der leere String, da es Placeholder gibt
-    // Varianten fuer Validierung:
-    //    serverseitig mittels Request/Response
-    //    clientseitig bei den Ereignissen keyup, change, blur, ...
-    // Ein Endbenutzer bewirkt staendig einen neuen Fehlerstatus
-    readonly titel = new FormControl(undefined, [
-        Validators.required,
+    readonly homepage = new FormControl(undefined, [
         Validators.minLength(CreateHomepageComponent.MIN_LENGTH),
-        Validators.pattern(/^\w.*$/u),
     ]);
-    // readonly titelGroup = new FormGroup({ titel: this.titel })
 
     readonly faExclamationCircle = faExclamationCircle;
 
     ngOnInit() {
         console.log('CreateHomepageComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('titel', this.titel);
+        this.form.addControl('homepage', this.homepage);
     }
 }

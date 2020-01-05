@@ -84,7 +84,7 @@ export interface KundeForm extends KundeShared {
  */
 
 export class Kunde {
-    ratingArray: Array<boolean> = [];
+    // ratingArray: Array<boolean> = [];
 
     // wird aufgerufen von fromServer() oder von fromForm()
     // eslint-disable-next-line max-params
@@ -103,7 +103,6 @@ export class Kunde {
         public interessen: Array<string> | undefined,
         public adresse: Adress,
         public user: User | undefined,
-        public username: string | undefined,
         public version: number | undefined,
     ) {
         this.id = id;
@@ -122,7 +121,6 @@ export class Kunde {
         this.interessen = interessen;
         this.adresse = adresse;
         this.user = user;
-        this.username = username;
         this.version = version || undefined;
     }
     static fromServer(kundeServer: KundeServer, etag?: string) {
@@ -160,7 +158,6 @@ export class Kunde {
             kundeServer.interessen,
             kundeServer.adresse,
             kundeServer.user,
-            kundeServer.username,
             version,
         );
         console.log('Kunde.fromServer(): kunde=', kunde);
@@ -213,9 +210,12 @@ export class Kunde {
             interessen,
             adresse,
             user,
-            kundeForm.username,
             kundeForm.version,
         );
+
+        kunde.umsatz.waehrung = 'EUR';
+        kunde.umsatz.betrag = 0;
+
         console.log('Kunde.fromForm(): kunde=', kunde);
         return kunde;
     }

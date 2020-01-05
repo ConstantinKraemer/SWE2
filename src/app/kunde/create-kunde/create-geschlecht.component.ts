@@ -30,11 +30,11 @@ export class CreateGeschlechtComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    readonly art = new FormControl('DRUCKAUSGABE');
+    readonly geschlecht = new FormControl('W');
 
     ngOnInit() {
         console.log('CreateGeschlechtComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('art', this.art);
+        this.form.addControl('geschlecht', this.geschlecht);
     }
 }
