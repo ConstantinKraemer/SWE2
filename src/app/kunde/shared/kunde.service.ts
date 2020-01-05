@@ -14,7 +14,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-import { BASE_URI, KUNDEN_PATH_REST } from '../../shared';
+import { BASE_URI, BUECHER_PATH_REST } from '../../shared';
 // Aus SharedModule als Singleton exportiert
 import { DiagrammService } from '../../shared/diagramm.service';
 
@@ -63,7 +63,7 @@ export class KundeService {
         private readonly diagrammService: DiagrammService,
         private readonly httpClient: HttpClient,
     ) {
-        this.baseUriKunden = `${BASE_URI}/${KUNDEN_PATH_REST}`;
+        this.baseUriKunden = `${BASE_URI}/${BUECHER_PATH_REST}`;
         console.log(
             `KundeService.constructor(): baseUriBuch=${this.baseUriKunden}`,
         );
