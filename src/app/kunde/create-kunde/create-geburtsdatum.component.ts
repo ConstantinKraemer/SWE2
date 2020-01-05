@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
+ * Copyright (C) 2018 - present Juergen Zimmermann, Hochschule Karlsruhe
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,26 +17,27 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 /**
- * Komponente mit dem Tag &lt;hs-create-schlagwoerter&gt;, um das Erfassungsformular
+ * Komponente mit dem Tag &lt;hs-create-datum&gt;, um das Erfassungsformular
  * f&uuml;r ein neues Buch zu realisieren.
  */
 @Component({
-    selector: 'hs-create-schlagwoerter',
-    templateUrl: './create-schlagwoerter.component.html',
+    selector: 'hs-create-geburtsdatum',
+    templateUrl: './create-geburtsdatum.component.html',
 })
-export class CreateSchlagwoerterComponent implements OnInit {
+export class CreateGeburtsdatumComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    readonly javascript = new FormControl(false);
-    readonly typescript = new FormControl(false);
+    readonly datum = new FormControl(undefined);
+
+    readonly faExclamationCircle = faExclamationCircle;
 
     ngOnInit() {
-        console.log('CreateInteressenComponent.ngOnInit');
+        console.log('CreateGeburtsdatumComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('javascript', this.javascript);
-        this.form.addControl('typescript', this.typescript);
+        this.form.addControl('datum', this.datum);
     }
 }

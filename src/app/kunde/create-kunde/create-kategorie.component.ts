@@ -25,10 +25,10 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
  */
 @Component({
     // moduleId: module.id,
-    selector: 'hs-create-titel',
-    templateUrl: './create-titel.component.html',
+    selector: 'hs-create-kategorie',
+    templateUrl: './create-kategorie.component.html',
 })
-export class CreateTitelComponent implements OnInit {
+export class CreateKategorieComponent implements OnInit {
     private static readonly MIN_LENGTH = 2;
 
     @Input()
@@ -41,7 +41,7 @@ export class CreateTitelComponent implements OnInit {
     // Ein Endbenutzer bewirkt staendig einen neuen Fehlerstatus
     readonly titel = new FormControl(undefined, [
         Validators.required,
-        Validators.minLength(CreateTitelComponent.MIN_LENGTH),
+        Validators.minLength(CreateKategorieComponent.MIN_LENGTH),
         Validators.pattern(/^\w.*$/u),
     ]);
     // readonly titelGroup = new FormGroup({ titel: this.titel })
@@ -51,6 +51,6 @@ export class CreateTitelComponent implements OnInit {
     ngOnInit() {
         console.log('CreateHomepageComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('titel', this.titel);
+        this.form.addControl('Nachname', this.titel);
     }
 }

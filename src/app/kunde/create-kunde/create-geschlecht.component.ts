@@ -19,24 +19,22 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 /**
- * Komponente mit dem Tag &lt;hs-create-schlagwoerter&gt;, um das Erfassungsformular
+ * Komponente mit dem Tag &lt;hs-create-art&gt;, um das Erfassungsformular
  * f&uuml;r ein neues Buch zu realisieren.
  */
 @Component({
-    selector: 'hs-create-schlagwoerter',
-    templateUrl: './create-schlagwoerter.component.html',
+    selector: 'hs-create-geschlecht',
+    templateUrl: './create-geschlecht.component.html',
 })
-export class CreateSchlagwoerterComponent implements OnInit {
+export class CreateGeschlechtComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    readonly javascript = new FormControl(false);
-    readonly typescript = new FormControl(false);
+    readonly art = new FormControl('DRUCKAUSGABE');
 
     ngOnInit() {
-        console.log('CreateInteressenComponent.ngOnInit');
+        console.log('CreateGeschlechtComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('javascript', this.javascript);
-        this.form.addControl('typescript', this.typescript);
+        this.form.addControl('art', this.art);
     }
 }

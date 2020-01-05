@@ -36,7 +36,7 @@ export class CreateDatumComponent implements OnInit {
     readonly faExclamationCircle = faExclamationCircle;
 
     ngOnInit() {
-        console.log('CreateDatumComponent.ngOnInit');
+        console.log('CreateGeburtsdatumComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
         this.form.addControl('datum', this.datum);
     }

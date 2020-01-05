@@ -34,7 +34,7 @@ import { Title } from '@angular/platform-browser';
  * f&uuml;r ein neues Buch zu realisieren.
  */
 @Component({
-    selector: 'hs-create-buch',
+    selector: 'hs-create-kund',
     templateUrl: './create-buch.component.html',
 })
 export class CreateBuchComponent implements OnInit, OnDestroy {

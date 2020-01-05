@@ -33,7 +33,7 @@ export class CreateLieferbarComponent implements OnInit {
     readonly lieferbar = new FormControl(false);
 
     ngOnInit() {
-        console.log('CreateLieferbarComponent.ngOnInit');
+        console.log('CreateNewsletterComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
         this.form.addControl('lieferbar', this.lieferbar);
     }

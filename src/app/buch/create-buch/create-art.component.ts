@@ -33,7 +33,7 @@ export class CreateArtComponent implements OnInit {
     readonly art = new FormControl('DRUCKAUSGABE');
 
     ngOnInit() {
-        console.log('CreateArtComponent.ngOnInit');
+        console.log('CreateGeschlechtComponent.ngOnInit');
         // siehe formControlName innerhalb @Component({templateUrl: ...})
         this.form.addControl('art', this.art);
     }
