@@ -25,13 +25,13 @@ import { HeaderModule } from './layout/header/header.module';
 // import { FooterModule } from './layout_alt/footer/footer.module';
 // import { HeaderModule } from './layout_alt/header/header.module';
 import { HomeModule } from './home/home.module';
+import { KundeModule } from './kunde/kunde.module';
+import { LoginModule } from './login/login.module';
 import { MainModule } from './layout_alt/main/main.module';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { authInterceptorProviders } from './auth/auth.interceptor';
 import { environment } from '../environments/environment';
-import { KundeModule } from './kunde/kunde.module';
-import { LoginModule } from './login/login.module';
 
 // https://angular.io/docs/ts/latest/guide/ngmodule.html
 // https://angular.io/docs/ts/latest/cookbook/ngmodule-faq.html

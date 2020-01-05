@@ -16,14 +16,14 @@
  */
 
 // https://fontawesome.com/how-to-use/on-the-web/using-with/angular
+import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
-
 import { WaitingComponent } from './waiting.component';
 
 @NgModule({
     declarations: [WaitingComponent],
     exports: [WaitingComponent],
-    imports: [FontAwesomeModule],
+    imports: [FontAwesomeModule, CommonModule],
 })
 export class WaitingModule {}

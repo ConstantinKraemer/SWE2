@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CreateKundeComponent } from './create-kunde/create-kunde.component';
+import { DetailsKundeComponent } from './details-kunde/details-kunde.component';
 import { NgModule } from '@angular/core';
 import { SucheKundeComponent } from './search-kunde/search-kunde.component';
 
@@ -11,6 +12,10 @@ const routes: Routes = [
     {
         path: 'create',
         component: CreateKundeComponent,
+    },
+    {
+        path: 'details',
+        component: DetailsKundeComponent,
     },
 ];
 
