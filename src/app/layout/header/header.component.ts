@@ -11,7 +11,6 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
     styles: [],
 })
 export class HeaderComponent implements OnInit {
-
     notLoggedIn!: boolean;
     readonly faSignOutAlt = faSignOutAlt;
     private isLoggedInSubscription!: Subscription;

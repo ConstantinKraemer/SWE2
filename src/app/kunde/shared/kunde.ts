@@ -115,7 +115,8 @@ export class Kunde {
         this.umsatz =
             // eslint-disable-next-line no-negated-condition
             umsatz !== undefined
-                ? umsatz : this.umsatz = new Umsatz(0, 'EUR');
+                ? umsatz
+                : (this.umsatz = new Umsatz(0, 'EUR'));
         this.geschlecht = geschlecht;
         this.familienstand = familienstand;
         this.interessen = interessen;

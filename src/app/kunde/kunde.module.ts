@@ -6,5 +6,4 @@ import { SearchKundeModule } from './search-kunde/search-kunde.module';
 @NgModule({
     imports: [KundeRoutingModule, SearchKundeModule, DetailsKundeModule],
 })
-export class KundeModule {
-}
+export class KundeModule {}
