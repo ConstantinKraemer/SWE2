@@ -40,4 +40,4 @@ export const BASE_URI = `${SCHEME}://${SERVERNAME}:${PORT}${BASE_PATH}`;
 /**
  * Pfad beim REST-Server fuer buecher
  */
-export const BUECHER_PATH_REST = 'kunden';
+export const KUNDEN_PATH_REST = '';

@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BASE_URI, BUECHER_PATH_REST } from '../../shared';
+import { BASE_URI, KUNDEN_PATH_REST } from '../../shared';
 import { Buch, BuchArt, BuchServer, Verlag } from './buch';
 // Bereitgestellt durch HttpClientModule
 // HttpClientModule enthaelt nur Services, keine Komponenten
@@ -74,7 +74,7 @@ export class BuchService {
         private readonly diagrammService: DiagrammService,
         private readonly httpClient: HttpClient,
     ) {
-        this.baseUriBuecher = `${BASE_URI}/${BUECHER_PATH_REST}`;
+        this.baseUriBuecher = `${BASE_URI}/${KUNDEN_PATH_REST}`;
         console.log(
             `BuchService.constructor(): baseUriBuch=${this.baseUriBuecher}`,
         );
