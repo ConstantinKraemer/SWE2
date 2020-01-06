@@ -36,6 +36,7 @@ import { CreatePasswortModule } from './create-passwort.module';
 import { CreateUsernameModule } from './create-username.module';
 import { CreateOrtModule } from './create-ort.module';
 import { CreatePlzModule } from './create-plz.module';
+import { CreateSuccessModule } from './create-sucess/create-success.module';
 
 // Ein Modul enthaelt logisch zusammengehoerige Funktionalitaet.
 // Exportierte Komponenten koennen bei einem importierenden Modul in dessen
@@ -43,7 +44,7 @@ import { CreatePlzModule } from './create-plz.module';
 // BuchModule ist ein "FeatureModule", das Features fuer Buecher bereitstellt
 @NgModule({
     declarations: [CreateKundeComponent],
-    exports: [CreateKundeComponent],
+    exports: [CreateKundeComponent, CreateSuccessModule],
     imports: [
         CommonModule,
         HttpClientModule,
@@ -63,6 +64,7 @@ import { CreatePlzModule } from './create-plz.module';
         CreateGeschlechtModule,
         CreateFamilienstandModule,
         ErrorMessageModule,
+        CreateSuccessModule,
     ],
     providers: [Title],
 })

@@ -30,7 +30,7 @@ export class CreateFamilienstandComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    readonly familienstand = new FormControl('L');
+    readonly familienstand = new FormControl(undefined);
 
     ngOnInit() {
         console.log('CreateGeschlechtComponent.ngOnInit');

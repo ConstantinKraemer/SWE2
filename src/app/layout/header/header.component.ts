@@ -44,7 +44,6 @@ export class HeaderComponent implements OnInit {
             this.notLoggedIn = !event;
             console.log('AuthComponent.notLoggedIn:', this.notLoggedIn);
         };
-
         // Observable.subscribe() aus RxJS liefert ein Subscription Objekt,
         // mit dem man den Request abbrechen ("cancel") kann
         // https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md

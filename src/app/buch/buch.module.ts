@@ -21,7 +21,7 @@ import { CreateBuchModule } from './create-buch/create-buch.module';
 import { DetailsBuchModule } from './details-buch/details-buch.module';
 import { LiniendiagrammModule } from './diagramme/liniendiagramm.module';
 import { NgModule } from '@angular/core';
-import { SucheBuecherModule } from './suche-buecher/suche-buecher.module';
+import { SucheBuecherModule } from './suche-kunden/suche-buecher.module';
 import { TortendiagrammModule } from './diagramme/tortendiagramm.module';
 import { UpdateBuchModule } from './update-buch/update-buch.module';
 

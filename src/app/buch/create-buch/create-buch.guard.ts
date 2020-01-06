@@ -31,7 +31,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class CreateBuchGuard implements CanDeactivate<CreateBuchComponent> {
     constructor() {
-        console.log('CreateBuchGuard.constructor()');
+        console.log('CreateKundeGuard.constructor()');
     }
 
     canDeactivate(
@@ -50,7 +50,7 @@ export class CreateBuchGuard implements CanDeactivate<CreateBuchComponent> {
 
         createBuch.showWarning = true;
         createBuch.fertig = true;
-        console.warn('CreateBuchGuard.canDeactivate(): Verlassen der Seite');
+        console.warn('CreateKundeGuard.canDeactivate(): Verlassen der Seite');
         return false;
     }
 }

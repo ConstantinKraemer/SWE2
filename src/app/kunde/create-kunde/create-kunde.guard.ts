@@ -29,7 +29,7 @@ export class CreateKundeGuard implements CanDeactivate<CreateKundeComponent> {
 
         createKunde.showWarning = true;
         createKunde.fertig = true;
-        console.warn('CreateKujndeGuard.canDeactivate(): Verlassen der Seite');
+        console.warn('CreateKundeGuard.canDeactivate(): Verlassen der Seite');
         return false;
     }
 }

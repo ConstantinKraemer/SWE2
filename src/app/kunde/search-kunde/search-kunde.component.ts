@@ -20,7 +20,7 @@ import { Suchkriterien } from '../shared/kunde.service';
 import { Title } from '@angular/platform-browser';
 
 /**
- * Komponente f&uuml;r das Tag <code>&lt;hs-suche-buecher&gt;</code>, die aus
+ * Komponente f&uuml;r das Tag <code>&lt;hs-suche-kunden&gt;</code>, die aus
  * den Kindkomponenten f&uuml;r diese Tags besteht:
  * <ul>
  *  <li> <code>hs-suchformular</code>
