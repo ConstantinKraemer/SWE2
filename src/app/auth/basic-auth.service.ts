@@ -89,6 +89,7 @@ export class BasicAuthService {
             // Base64-String fuer 1 Tag speichern
             basicAuth,
             roles,
+            // eslint-disable-next-line @typescript-eslint/no-magic-numbers
             new Date().getTime() + 24 * 60 * 60 * 100,
         );
         return json;

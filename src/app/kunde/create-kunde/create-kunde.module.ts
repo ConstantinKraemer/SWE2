@@ -16,27 +16,28 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { CreateKundeComponent } from './create-kunde.component';
+import { CreateEmailModule } from './create-email.module';
+import { CreateFamilienstandModule } from './create-familienstand.module';
+import { CreateGeburtsdatumModule } from './create-geburtsdatum.module';
+import { CreateGeschlechtModule } from './create-geschlecht.module';
+import { CreateHomepageModule } from './create-homepage.module';
 import { CreateInteressenModule } from './create-interessen.module';
 import { CreateKategorieModule } from './create-kategorie.module';
+import { CreateKundeComponent } from './create-kunde.component';
+import { CreateNachnameModule } from './create-nachname.module';
+import { CreateNewsletterModule } from './create-newsletter.module';
+import { CreateOrtModule } from './create-ort.module';
+import { CreatePasswortModule } from './create-passwort.module';
+import { CreatePlzModule } from './create-plz.module';
+import { CreateSuccessModule } from './create-sucess/create-success.module';
+import { CreateUsernameModule } from './create-username.module';
 import { ErrorMessageModule } from '../../shared/error-message.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+// eslint-disable-next-line sort-imports
+import { /* FormGroup, */ ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { CreateEmailModule } from './create-email.module';
-import { CreateNewsletterModule } from './create-newsletter.module';
-import { CreateNachnameModule } from './create-nachname.module';
-import { CreateGeburtsdatumModule } from './create-geburtsdatum.module';
-import { CreateHomepageModule } from './create-homepage.module';
-import { CreateGeschlechtModule } from './create-geschlecht.module';
-import { CreateFamilienstandModule } from './create-familienstand.module';
-import { CreatePasswortModule } from './create-passwort.module';
-import { CreateUsernameModule } from './create-username.module';
-import { CreateOrtModule } from './create-ort.module';
-import { CreatePlzModule } from './create-plz.module';
-import { CreateSuccessModule } from './create-sucess/create-success.module';
 
 // Ein Modul enthaelt logisch zusammengehoerige Funktionalitaet.
 // Exportierte Komponenten koennen bei einem importierenden Modul in dessen

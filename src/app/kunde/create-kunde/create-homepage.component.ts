@@ -30,8 +30,10 @@ export class CreateHomepageComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
+    // eslint-disable-next-line array-bracket-newline
     readonly homepage = new FormControl(undefined, [
         Validators.minLength(CreateHomepageComponent.MIN_LENGTH),
+        // eslint-disable-next-line array-bracket-newline
     ]);
 
     readonly faExclamationCircle = faExclamationCircle;

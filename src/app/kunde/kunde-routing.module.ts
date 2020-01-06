@@ -1,12 +1,13 @@
-import { RouterModule, Routes } from '@angular/router';
-import { CreateKundeComponent } from './create-kunde/create-kunde.component';
-import { DetailsKundeComponent } from './details-kunde/details-kunde.component';
-import { NgModule } from '@angular/core';
-import { SucheKundeComponent } from './search-kunde/search-kunde.component';
 import { AdminGuard } from '../auth/admin.guard';
-import { UpdateKundeComponent } from './update-kunde/update-kunde.component';
+import { CreateKundeComponent } from './create-kunde/create-kunde.component';
 import { CreateKundeGuard } from './create-kunde/create-kunde.guard';
 import { CreateSuccessComponent } from './create-kunde/create-sucess/create-success.component';
+import { DetailsKundeComponent } from './details-kunde/details-kunde.component';
+import { NgModule } from '@angular/core';
+// eslint-disable-next-line sort-imports
+import { RouterModule, Routes } from '@angular/router';
+import { SucheKundeComponent } from './search-kunde/search-kunde.component';
+import { UpdateKundeComponent } from './update-kunde/update-kunde.component';
 
 const routes: Routes = [
     {

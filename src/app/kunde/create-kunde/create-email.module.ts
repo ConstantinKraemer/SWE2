@@ -16,10 +16,10 @@
  */
 
 import { CommonModule } from '@angular/common';
+import { CreateEmailComponent } from './create-email.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CreateEmailComponent } from './create-email.component';
 
 @NgModule({
     declarations: [CreateEmailComponent],

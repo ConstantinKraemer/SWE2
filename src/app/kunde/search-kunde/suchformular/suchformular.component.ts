@@ -1,12 +1,13 @@
 import { Component, Output, ViewChild } from '@angular/core';
+import { fadeIn } from '../../../shared';
+// eslint-disable-next-line sort-imports
 import { faInfoCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
-import { Suchkriterien } from '../../shared/kunde.service';
-import { fadeIn } from '../../../shared';
-import { SucheNachnameComponent } from './suche-nachname.component';
-import { SucheGeschlechtComponent } from './suche-geschlecht.component';
 import { SucheEmailComponent } from './suche-email.component';
+import { SucheGeschlechtComponent } from './suche-geschlecht.component';
 import { SucheInteresseComponent } from './suche-interesse.component';
+import { SucheNachnameComponent } from './suche-nachname.component';
+import { Suchkriterien } from '../../shared/kunde.service';
 
 @Component({
     selector: 'hs-suchformular',

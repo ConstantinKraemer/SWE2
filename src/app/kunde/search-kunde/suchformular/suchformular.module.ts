@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { SucheEmailModule } from './suche-email.module';
 import { SucheGeschlechtModule } from './suche-geschlecht.module';
 import { SucheInteresseMoudle } from './suche-interesse.module';
-import { SuchformularComponent } from './suchformular.component';
 import { SucheNachnameModule } from './suche-nachname.module';
+import { SuchformularComponent } from './suchformular.component';
 
 @NgModule({
     declarations: [SuchformularComponent],

@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { CookieService } from './cookie.service';
-import { Injectable } from '@angular/core';
-import { JwtService } from './jwt.service';
-import { Subject } from 'rxjs';
 import { BasicAuthService } from './basic-auth.service';
-import { Router } from '@angular/router';
+import { CookieService } from './cookie.service';
 import { HOME_PATH } from '../shared';
+import { Injectable } from '@angular/core';
+// import { JwtService } from './jwt.service';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 // export const ROLLE_ADMIN = 'admin';
 // Spring Security:

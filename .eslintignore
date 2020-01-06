@@ -5,3 +5,5 @@ dist
 node_modules
 src/app/kunde/shared/*
 src/app/kunde/kunde.module.ts
+src/app/kunde/create-kunde/create-sucess/create-success.component.ts
+src/app/layout/footer/footer.component.ts

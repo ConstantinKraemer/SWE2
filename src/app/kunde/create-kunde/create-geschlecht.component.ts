@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup /* ,Validators */ } from '@angular/forms';
 
 /**
  * Komponente mit dem Tag &lt;hs-create-art&gt;, um das Erfassungsformular

@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+// eslint-disable-next-line sort-imports
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HOME_PATH } from '../shared';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+// import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'hs-login',

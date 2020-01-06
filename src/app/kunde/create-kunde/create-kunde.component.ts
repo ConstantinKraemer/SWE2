@@ -21,13 +21,13 @@ import {
     faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
-import { SUCCESS_PATH } from '../../shared';
+import { Kunde } from '../shared/kunde';
+import { KundeService } from '../shared/kunde.service';
 import { Router } from '@angular/router';
+import { SUCCESS_PATH } from '../../shared';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { KundeService } from '../shared/kunde.service';
-import { Kunde } from '../shared/kunde';
 
 @Component({
     selector: 'hs-create-kunde',
@@ -50,7 +50,12 @@ export class CreateKundeComponent implements OnInit, OnDestroy {
         private readonly kundeService: KundeService,
         private readonly router: Router,
         private readonly titleService: Title,
-    ) {}
+    ) {
+        console.log('CreateKundeComponent.constructor()');
+        if (router !== undefined) {
+            console.log('Injizierter Router:', router);
+        }
+    }
 
     ngOnInit() {
         this.titleService.setTitle('Kunde anlegen');
