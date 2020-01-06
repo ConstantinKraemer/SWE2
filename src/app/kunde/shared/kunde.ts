@@ -294,7 +294,6 @@ export class Kunde {
         this.geschlecht = geschlecht;
         this.familienstand = familienstand;
         this.adresse = adresse;
-        this.version = 1;
     }
     hasNoGeschlecht() {
         if (this.geschlecht === undefined) {
@@ -316,7 +315,6 @@ export class Kunde {
             interessen: this.interessen,
             adresse: this.adresse,
             user: this.user,
-            version: this.version,
         };
     }
 

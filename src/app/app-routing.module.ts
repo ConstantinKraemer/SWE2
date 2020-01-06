@@ -19,6 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DetailsKundeComponent } from './kunde/details-kunde/details-kunde.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
+import { UpdateKundeComponent } from './kunde/update-kunde/update-kunde.component';
 
 // Route-Definitionen fuer den Root-Router
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
     {
         path: `${DETAILS_KUNDE_PATH}/:id`,
         component: DetailsKundeComponent,
+    },
+    {
+        path: `${DETAILS_KUNDE_PATH}/:id/update`,
+        component: UpdateKundeComponent,
     },
 ];
 
