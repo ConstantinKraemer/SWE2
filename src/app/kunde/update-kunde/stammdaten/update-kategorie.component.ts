@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
+ * Copyright (C) 2018 - present Juergen Zimmermann, Hochschule Karlsruhe
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,36 +16,34 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { GeschlechtType } from '../../shared/kunde';
+import { FormControl, FormGroup } from '@angular/forms';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 /**
- * Komponente f&uuml;r das Tag <code>hs-update-geschlecht</code>
+ * Komponente f&uuml;r das Tag <code>hs-update-kategorie</code>
  */
 @Component({
-    selector: 'hs-update-geschlecht',
-    templateUrl: './update-geschlecht.component.html',
+    selector: 'hs-update-kategorie',
+    templateUrl: './update-kategorie.component.html',
 })
-export class UpdateGeschlechtComponent implements OnInit {
-    // <hs-update-geschlecht [form]="form" [currentValue]="...">
+export class UpdateKategorieComponent implements OnInit {
+    // <hs-update-kategorie [form]="form" [currentValue]="...">
     @Input()
     readonly form!: FormGroup;
     @Input()
-    readonly currentValue!: GeschlechtType;
+    readonly currentValue!: number | undefined;
 
-    geschlecht!: FormControl;
+    kategorie!: FormControl;
+
+    readonly faExclamationCircle = faExclamationCircle;
 
     ngOnInit() {
         console.log(
-            'UpdateGeschlechtComponent.ngOnInit(): currentValue=',
+            'UpdateKategorieComponent.ngOnInit(): currentValue=',
             this.currentValue,
         );
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.geschlecht = new FormControl(
-            this.currentValue,
-            Validators.required,
-        );
-        this.form.addControl('geschlecht', this.geschlecht);
+        this.kategorie = new FormControl(this.currentValue);
+        this.form.addControl('kategorie', this.kategorie);
     }
 }

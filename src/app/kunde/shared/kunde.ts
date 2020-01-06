@@ -283,9 +283,7 @@ export class Kunde {
         homepage: URL | undefined,
         geschlecht: GeschlechtType | undefined | '',
         familienstand: FamilienstandType | undefined,
-        interessen: Array<string> | undefined,
-        plz: string,
-        ort: string,
+        adresse: Adress,
     ) {
         this.nachname = nachname;
         this.email = email;
@@ -295,9 +293,7 @@ export class Kunde {
         this.homepage = homepage;
         this.geschlecht = geschlecht;
         this.familienstand = familienstand;
-        this.interessen = interessen;
-        this.adresse.plz = plz;
-        this.adresse.ort = ort;
+        this.adresse = adresse;
         this.version = 1;
     }
     hasNoGeschlecht() {

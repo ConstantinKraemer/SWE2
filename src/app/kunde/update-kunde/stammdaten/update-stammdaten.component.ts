@@ -20,10 +20,10 @@ import {
     faCheck,
     faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { Buch } from '../../shared/buch';
-import { BuchService } from '../../shared/buch.service';
 import { FormGroup } from '@angular/forms';
 import { HOME_PATH } from '../../../shared';
+import { Kunde } from '../../shared/kunde';
+import { KundeService } from '../../shared/kunde.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -35,9 +35,9 @@ import { Subscription } from 'rxjs';
     templateUrl: './update-stammdaten.component.html',
 })
 export class UpdateStammdatenComponent implements OnInit, OnDestroy {
-    // <hs-update-stammdaten [buch]="...">
+    // <hs-update-stammdaten [kunde]="...">
     @Input()
-    readonly buch!: Buch;
+    readonly kunde!: Kunde;
 
     readonly form = new FormGroup({});
 
@@ -47,7 +47,7 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
     private updateSubscription: Subscription | undefined;
 
     constructor(
-        private readonly buchService: BuchService,
+        private readonly kundeService: KundeService,
         private readonly router: Router,
     ) {
         console.log('UpdateStammdatenComponent.constructor()');
@@ -55,10 +55,10 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
 
     /**
      * Das Formular als Gruppe von Controls initialisieren und mit den
-     * Stammdaten des zu &auml;ndernden Buchs vorbelegen.
+     * Stammdaten des zu &auml;ndernden Kunden vorbelegen.
      */
     ngOnInit() {
-        console.log('UpdateStammdatenComponent.ngOnInit(): buch=', this.buch);
+        console.log('UpdateStammdatenComponent.ngOnInit(): kunde=', this.kunde);
     }
 
     ngOnDestroy() {
@@ -68,7 +68,7 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Die aktuellen Stammdaten f&uuml;r das angezeigte Buch-Objekt
+     * Die aktuellen Stammdaten f&uuml;r das angezeigte Kunde-Objekt
      * zur&uuml;ckschreiben.
      * @return false, um das durch den Button-Klick ausgel&ouml;ste Ereignis
      *         zu konsumieren.
@@ -82,25 +82,26 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
             return undefined;
         }
 
-        if (this.buch === undefined) {
+        if (this.kunde === undefined) {
             console.error(
-                'UpdateStammdatenComponent.onUpdate(): buch === undefined',
+                'UpdateStammdatenComponent.onUpdate(): kunde === undefined',
             );
             return undefined;
         }
 
         // rating, preis und rabatt koennen im Formular nicht geaendert werden
-        this.buch.updateStammdaten(
-            this.form.value.titel,
-            this.form.value.art,
-            this.form.value.verlag,
-            this.form.value.rating,
-            this.buch.datum,
-            this.buch.preis,
-            this.buch.rabatt,
-            this.form.value.isbn,
+        this.kunde.updateStammdaten(
+            this.form.value.nachname,
+            this.form.value.email,
+            this.form.value.kategorie,
+            this.kunde.newsletter,
+            this.kunde.umsatz,
+            this.kunde.homepage,
+            this.kunde.geschlecht,
+            this.form.value.familienstand,
+            this.kunde.adresse,
         );
-        console.log('buch=', this.buch);
+        console.log('kunde=', this.kunde);
 
         const successFn = () => {
             console.log(
@@ -133,8 +134,8 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
             );
         };
 
-        this.updateSubscription = this.buchService.update(
-            this.buch,
+        this.updateSubscription = this.kundeService.update(
+            this.kunde,
             successFn,
             errorFn,
         );

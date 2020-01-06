@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 - present Juergen Zimmermann, Hochschule Karlsruhe
+ * Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,41 +17,35 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+
+import { FamilienstandType } from '../../shared/kunde';
 
 /**
- * Komponente f&uuml;r das Tag <code>hs-update-nachname</code>
+ * Komponente f&uuml;r das Tag <code>hs-update-familienstand</code>
  */
 @Component({
-    selector: 'hs-update-nachname',
-    templateUrl: './update-nachname.component.html',
+    selector: 'hs-update-familienstand',
+    templateUrl: './update-familienstand.component.html',
 })
-export class UpdateNachnameComponent implements OnInit {
-    private static readonly MIN_LENGTH = 2;
-
-    // <hs-update-nachname [form]="form" [currentValue]="...">
+export class UpdateFamilienstandComponent implements OnInit {
+    // <hs-update-familienstand [form]="form" [currentValue]="...">
     @Input()
     readonly form!: FormGroup;
     @Input()
-    readonly currentValue!: string | undefined;
+    readonly currentValue!: FamilienstandType | undefined;
 
-    nachname!: FormControl;
-
-    readonly faExclamationCircle = faExclamationCircle;
+    familienstand!: FormControl;
 
     ngOnInit() {
         console.log(
-            'UpdateNachnameComponent.ngOnInit(): currentValue=',
+            'UpdateFamilienstandComponent.ngOnInit(): currentValue=',
             this.currentValue,
         );
         // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.nachname = new FormControl(
+        this.familienstand = new FormControl(
             this.currentValue,
-            Validators.compose([
-                Validators.required,
-                Validators.minLength(UpdateNachnameComponent.MIN_LENGTH),
-            ]),
+            Validators.required,
         );
-        this.form.addControl('nachname', this.nachname);
+        this.form.addControl('familienstand', this.familienstand);
     }
 }

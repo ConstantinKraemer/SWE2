@@ -29,8 +29,9 @@ const routes: Routes = [
         component: DetailsKundeComponent,
     },
     {
-        path: 'update',
+        path: ':id/update',
         component: UpdateKundeComponent,
+        canActivate: [AdminGuard],
     },
 ];
 
