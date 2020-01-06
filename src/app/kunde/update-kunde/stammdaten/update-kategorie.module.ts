@@ -15,25 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateEmailModule } from './update-email.module';
-import { UpdateFamilienstandModule } from './update-familienstand.module';
-import { UpdateKategorieModule } from './update-kategorie.module';
-import { UpdateNachnameModule } from './update-nachname.module';
-import { UpdateStammdatenComponent } from './update-stammdaten.component';
+
+import { UpdateKategorieComponent } from './update-kategorie.component';
 
 @NgModule({
-    declarations: [UpdateStammdatenComponent],
-    exports: [UpdateStammdatenComponent],
-    imports: [
-        ReactiveFormsModule,
-        FontAwesomeModule,
-        UpdateEmailModule,
-        UpdateFamilienstandModule,
-        UpdateKategorieModule,
-        UpdateNachnameModule,
-    ],
+    declarations: [UpdateKategorieComponent],
+    exports: [UpdateKategorieComponent],
+    imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
 })
-export class UpdateStammdatenModule {}
+export class UpdateKategorieModule {}

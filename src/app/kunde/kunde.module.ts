@@ -3,6 +3,7 @@ import { KundeRoutingModule } from './kunde-routing.module';
 import { NgModule } from '@angular/core';
 import { SearchKundeModule } from './search-kunde/search-kunde.module';
 import { CreateKundeModule } from './create-kunde/create-kunde.module';
+import { UpdateKundeModule } from './update-kunde/update-kunde.module';
 
 @NgModule({
     imports: [
@@ -10,6 +11,7 @@ import { CreateKundeModule } from './create-kunde/create-kunde.module';
         CreateKundeModule,
         SearchKundeModule,
         DetailsKundeModule,
+        UpdateKundeModule,
     ],
 })
 export class KundeModule {}

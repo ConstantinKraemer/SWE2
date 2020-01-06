@@ -8,7 +8,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PGeschlechtICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PFamilienstandICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -18,11 +18,11 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { UpdateGeschlechtComponent } from './update-geschlecht.component';
+import { UpdateFamilienstandComponent } from './update-familienstand.component';
 
 @NgModule({
-    declarations: [UpdateGeschlechtComponent],
-    exports: [UpdateGeschlechtComponent],
+    declarations: [UpdateFamilienstandComponent],
+    exports: [UpdateFamilienstandComponent],
     imports: [ReactiveFormsModule],
 })
-export class UpdateGeschlechtModule {}
+export class UpdateFamilienstandModule {}
