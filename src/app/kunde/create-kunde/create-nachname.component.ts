@@ -26,6 +26,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class CreateNachnameComponent implements OnInit {
     private static readonly MIN_LENGTH = 2;
+    private static readonly PATTERN = 'von|von der|von und zu|van';
 
     @Input()
     readonly form!: FormGroup;
@@ -38,7 +39,7 @@ export class CreateNachnameComponent implements OnInit {
     readonly nachname = new FormControl(undefined, [
         Validators.required,
         Validators.minLength(CreateNachnameComponent.MIN_LENGTH),
-        Validators.pattern(/^\w.*$/u),
+        Validators.pattern('[A-ZÄÖÜ][a-zäöüß]+'),
     ]);
 
     readonly faExclamationCircle = faExclamationCircle;

@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Komponente mit dem Tag &lt;hs-create-art&gt;, um das Erfassungsformular
@@ -30,7 +30,7 @@ export class CreateGeschlechtComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    readonly geschlecht = new FormControl('W');
+    readonly geschlecht = new FormControl(undefined);
 
     ngOnInit() {
         console.log('CreateGeschlechtComponent.ngOnInit');

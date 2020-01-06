@@ -27,7 +27,7 @@ export class CreateKategorieComponent implements OnInit {
     @Input()
     readonly form!: FormGroup;
 
-    readonly kategorie = new FormControl(undefined, Validators.required);
+    readonly kategorie = new FormControl(undefined);
 
     readonly faExclamationCircle = faExclamationCircle;
 

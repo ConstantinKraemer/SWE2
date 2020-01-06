@@ -23,7 +23,7 @@ import { CreateBuchGuard } from './create-buch/create-buch.guard';
 import { DetailsBuchComponent } from './details-buch/details-buch.component';
 import { LiniendiagrammComponent } from './diagramme/liniendiagramm.component';
 import { NgModule } from '@angular/core';
-import { SucheBuecherComponent } from './suche-buecher/suche-buecher.component';
+import { SucheBuecherComponent } from './suche-kunden/suche-buecher.component';
 import { TortendiagrammComponent } from './diagramme/tortendiagramm.component';
 import { UpdateBuchComponent } from './update-buch/update-buch.component';
 

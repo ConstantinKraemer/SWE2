@@ -21,7 +21,7 @@ import {
     faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
-import { HOME_PATH } from '../../shared';
+import { SUCCESS_PATH } from '../../shared';
 import { Router } from '@angular/router';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { Subscription } from 'rxjs';
@@ -30,7 +30,7 @@ import { KundeService } from '../shared/kunde.service';
 import { Kunde } from '../shared/kunde';
 
 @Component({
-    selector: 'hs-create-kund',
+    selector: 'hs-create-kunde',
     templateUrl: './create-kunde.component.html',
 })
 export class CreateKundeComponent implements OnInit, OnDestroy {
@@ -45,6 +45,7 @@ export class CreateKundeComponent implements OnInit, OnDestroy {
 
     private saveSubscription: Subscription | undefined;
 
+    // eslint-disable-next-line no-useless-constructor
     constructor(
         private readonly kundeService: KundeService,
         private readonly router: Router,
@@ -76,11 +77,11 @@ export class CreateKundeComponent implements OnInit, OnDestroy {
 
         const successFn = (location: string | undefined) => {
             console.log(
-                `CreateKundeComponent.onSave(): successFn(): location=${location}, navigate=${HOME_PATH}`,
+                `CreateKundeComponent.onSave(): successFn(): location=${location}, navigate=${SUCCESS_PATH}`,
             );
             this.fertig = true;
             this.showWarning = false;
-            this.router.navigate([HOME_PATH]).then(
+            this.router.navigate([SUCCESS_PATH]).then(
                 navResult => {
                     if (navResult) {
                         console.log('CreateKunde.onSave(): Navigation');

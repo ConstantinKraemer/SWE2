@@ -19,7 +19,7 @@
  * Pfade an der Weboberflaeche
  */
 export const HOME_PATH = 'home';
-
+export const SUCCESS_PATH = 'kunde/success';
 // siehe proxy.conf.json und angular.json
 const SCHEME = 'https';
 const PORT = 443;
